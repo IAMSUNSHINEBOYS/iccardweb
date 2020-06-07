@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>角色权限</title>
+<#include "include/include.html">
+<@sysManage/>
+<@listTop/>
+<script type="text/javascript">
+	$(function() {
+		getPager(1);
+	})
+	function getPager(pager) {
+		sysManage_role_list(pager)
+	}
+</script>
+</head>
+<body>
+	<form id="queryForm">
+		<div id="tiptop">
+			<@shiro.hasPermission name="sys:role:add">
+				<p onclick="sysManage_role_addInput();">
+					<i class="iconfont">&#xe601;</i>添加
+				</p>
+			</@shiro.hasPermission>
+			<@shiro.hasPermission name="sys:role:delete">
+				<p onclick="sysManage_role_delete();">
+					<i class="iconfont">&#xe676;</i>批量删除
+				</p>
+			</@shiro.hasPermission>
+		</div>
+		<div class="topinput query-contextmenu">
+			<div class="layui-form layui-form-pane">
+				<div class="layui-form-item">
+					<label class="layui-form-label">角色名称</label>
+					<div class="layui-input-block">
+						<input type="text" name="name" placeholder="输入角色名称"
+							autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">用户名称</label>
+					<div class="layui-input-block">
+						<select name="adminId" lay-search>
+							<option value="">全部</option>
+							<#list list as admin>
+								<option value="${admin.id}">${admin.name}</option>
+							</#list>
+						</select>
+					</div>
+				</div>
+				<div class="layui-form-item">
+				   <div class="layui-btn" onclick="getPager(1);">
+					   <i class ="iconfont iconfont_btn">&#xe654;</i>查询
+				   </div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<input type="hidden" name="order" value="1" /> <input type="hidden"
+			name="field" value="r.id" />
+		<div id="mainList" class="layui-form"></div>
+	</form>
+</body>
+<@layuiBottom/>
+</html>

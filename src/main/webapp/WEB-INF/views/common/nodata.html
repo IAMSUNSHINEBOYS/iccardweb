@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>暂无数据</title>
+<style type="text/css">
+.container {
+	margin: 20px auto;
+}
+
+.icon {
+	font-size: 80px!important;
+}
+</style>
+</head>
+<body>
+	<div class="nodata container">
+		<i class="iconfont icon">&#xe642;</i>
+		<div>
+		  <#if content??>
+		    ${content}
+		 <#else>
+		         暂无数据
+		 </#if>
+		</div>
+	</div>
+</body>
+</html>

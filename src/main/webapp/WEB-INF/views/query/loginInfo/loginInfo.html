@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>登录信息</title> 
+<#include "include/include.html"> 
+<@layuiTop/>
+<@listStyle/>
+<@query/>
+<@wdate/>
+</head>
+<body>
+	<div class="layui-tab" lay-filter="areaManage" style="margin:0px 20px;">
+		<ul class="layui-tab-title">
+		 <@shiro.hasPermission name="sys:online:list">
+			<li>在线用户</li>
+		 </@shiro.hasPermission>
+		 <@shiro.hasPermission name="sys:loginRecord:list">
+			<li>登录记录</li>
+		 </@shiro.hasPermission>
+		</ul>
+		<div class="refresh" onclick="tabRefresh();" title="刷新">
+			<i class="iconfont" style="font-size: 25px;">&#xe670;</i>
+		</div>
+		<div class="layui-tab-content">
+		 <@shiro.hasPermission name="sys:online:list">
+			<div class="layui-tab-item" data-url="../loginInfo/onlineList" style="margin:0 -15px;"></div> 
+		 </@shiro.hasPermission>
+		 <@shiro.hasPermission name="sys:loginRecord:list">
+			<div class="layui-tab-item" data-url="../loginInfo/loginRecordList" style="margin:0 -15px;"></div>
+		 </@shiro.hasPermission>
+		</div>
+	</div>
+</body>
+<@layuiBottom/>
+<script type="text/javascript">
+   tabInit('areaManage');
+</script>
+</html>

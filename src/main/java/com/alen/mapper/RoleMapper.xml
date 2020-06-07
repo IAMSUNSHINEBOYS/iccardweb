@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alen.mapper.RoleMapper">
+	<select id="getRolesByMeunId" resultType="com.alen.entity.Role">
+		SELECT id,name,remark
+		FROM sys_role r WHERE
+		EXISTS(SELECT * FROM sys_role_menu mr WHERE mr.role=r.id AND mr.menu=#{meunId})
+	</select>
+	
+	<select id="getRoleList" resultType="com.alen.entity.Role">
+		SELECT id,name,remark FROM sys_role r
+		<where>
+			<if test="name!=null and name.trim()!=''">name=#{name}</if>
+			<if test="adminId!=null">and EXISTS(SELECT * FROM sys_admin_role ar WHERE
+				ar.admin=#{adminId} AND r.id=ar.role)</if>
+		</where>
+	</select>
+	
+	<select id="getRoleByName" resultType="com.alen.entity.Role">
+		SELECT id,name FROM
+		sys_role WHERE name=#{name}
+	</select>
+	
+	<insert id="saveRole" keyProperty="id" keyColumn="id"
+		useGeneratedKeys="true">
+		insert into sys_role(id,name,remark)
+		values(SEQUENCE_ROLE_ID.nextval,#{name},#{remark})
+	</insert>
+	
+	<insert id="saveRoleMenu">
+		insert into sys_role_menu(role,menu)
+		values(#{roleId},#{menuId})
+	</insert>
+	
+	<select id="getRoleById" resultMap="getRoleByIdMap">
+		SELECT
+		id,name,remark,menu FROM sys_role r LEFT JOIN sys_role_menu rm ON
+		r.id=rm.role WHERE r.id=#{id}
+	</select>
+	
+	<resultMap type="com.alen.entity.Role" id="getRoleByIdMap">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="remark" property="remark" />
+		<collection property="menus" ofType="integer">
+		  <result column="menu" property="menus" />
+		</collection>
+	</resultMap>
+	
+    <delete id="deleteRoleMenuByRoleId">
+		delete from sys_role_menu where role=#{roleId}
+	</delete>
+	
+	<delete id="deleteRoleById">
+		delete from sys_role where id=#{id}
+	</delete>
+	
+	<delete id="deleteAdminRoleByRoleId">
+		delete from sys_admin_role where role=#{id}
+	</delete>
+	
+	<update id="updateRoleById">
+		update sys_role set name=#{name},remark=#{remark} where id =#{id}
+	</update>
+	
+	<select id="getAll" resultType="com.alen.entity.Role">
+		SELECT id,name,remark FROM sys_role
+	</select>
+</mapper>

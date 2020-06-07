@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<table class="layui-table table-contextmenu" lay-skin="row" lay-even>
+	<thead>
+		<tr>
+			<@shiro.hasPermission name="sys:online:delete">
+			<th class="firsttd"><input type="checkbox"
+				lay-filter="allChoose" lay-skin="primary" />
+			</th> </@shiro.hasPermission>
+			<th>登录名</th>
+			<th>用户名</th>
+			<th>性别</th>
+			<th>电话号码</th>
+			<th>登录IP</th>
+			<th data-order="loginTime">登录时间</th>
+			<th>登录时长</th>
+		</tr>
+	</thead>
+	<tbody>
+		<#list list as item>
+		<tr>
+			<@shiro.hasPermission name="sys:online:delete">
+			<td class="firsttd"><input type="checkbox" value="${item.id}"
+				data-ignore lay-skin="primary" lay-filter="singleChoose" name="ids">
+			</td> </@shiro.hasPermission>
+			<td>${item.adminUserName}</td>
+			<td>${item.adminName}</td>
+			<td>${item.sex}</td>
+			<td>${item.phone}</td>
+			<td>${item.ip}</td>
+			<td>${(item.loginTime?string("yyyy-MM-dd HH:mm:ss"))!}</td>
+			<td>${item.time}
+				<div class="tabletip">
+					<@shiro.hasPermission name="sys:online:delete">
+					<p onclick="query_online_delete(${item.id});">
+						<i class="iconfont">&#xe676;</i>删除
+					</p>
+					</@shiro.hasPermission>
+				</div>
+			</td>
+		</tr>
+		</#list>
+	</tbody>
+</table>
+<#assign pageFun='getOnlinePager'> 
+<#assign currentPage='currentPageOnline'> 
+<#assign pagecontain='pagecontainOnline'> 
+<#assign mainList='mainOnlineList'> 
+<#assign queryForm='queryOnlineForm'>
+<#include "include/include.html"> 
+<@listBottom/>
+<script type="text/javascript">
+	layui.use('form', function() {
+		var form = layui.form;
+		form.on('radio(osex)', function(data) {
+			getOnlinePager(1);
+		});
+	});
+</script>

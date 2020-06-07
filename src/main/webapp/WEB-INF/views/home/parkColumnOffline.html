@@ -1,0 +1,42 @@
+<div class="offline">
+	<div class="data">
+		<div class="layui-card-header">车道离线</div>
+		<div class="layui-card-body flow-default">
+			<table class="layui-table" lay-skin="line">
+				<thead>
+				 <tr>
+					<th>停车场</th>
+				    <th>大门</th>
+				    <th>车道</th>
+				</tr>
+			   </thead>
+			   <tbody id="offlineRate" >
+			   </tbody>
+			</table>
+			<div id="moreElem"></div>
+		</div>
+	</div>
+</div>
+<@layuiBottom/>
+<script type="text/javascript">
+	layui.use(['flow'], function() {
+		var flow = layui.flow;
+		flow.load({
+			elem : '#offlineRate', //流加载容器
+			scrollElem : '.offline .flow-default',
+			moreElem : '#moreElem',
+			done : function(page, next) { //执行下一页的回调
+				setTimeout(function(){
+					//后台取数据
+					var lis = [];
+					var res={"pages":1,"data":[{"lane":"000001","gate":"一楼门","name":"36号楼"},{"lane":"000002","gate":"一楼门","name":"36号楼"},{"lane":"000003","gate":"二三楼门","name":"36号楼"},{"lane":"000004","gate":"二三楼门","name":"36号楼"}]};
+                   	  //假设你的列表返回在data集合中
+                       layui.each(res.data, function (index, item) {
+                           lis.push('<tr><td>'+item.name+'</td><td>'+item.gate+'</td><td>' + item.lane + '</td></tr>');
+                       });
+                       next(lis.join(''), page < res.pages);//pages是后台返回的总页数
+				},300);
+			}
+		});
+	});
+</script>

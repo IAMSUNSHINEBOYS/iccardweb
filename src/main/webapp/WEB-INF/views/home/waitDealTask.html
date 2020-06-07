@@ -1,0 +1,49 @@
+<div class="task">
+	<div class="data">
+		<div class="layui-card-header">待处理事项
+		<span class="tab-refresh"><i class="iconfont">&#xe69c;</i></span></div>
+		<div class="layui-card-body">
+			<ul class="layui-row">
+				<li class="layui-col-xs3">
+					<div
+						<@shiro.hasPermission name="sys:consultComplaintsList:list">
+						class="addTab" </@shiro.hasPermission>
+						href="${contextPath}/admin/ConsultComplaints/consultComplaintsList.do"
+						tab-title="咨询投诉">
+						<h3>咨询投诉</h3>
+						<p>
+							<cite class="ccCounts">--</cite>
+						</p>
+					</div></li>
+				<li class="layui-col-xs3">
+					<div
+						<@shiro.hasPermission name="sys:telephoneMessage:list">
+						class="addTab" </@shiro.hasPermission>
+						href="${contextPath}/admin/telephoneMessage/telephoneMessageList.do"
+						tab-title="电话留言">
+						<h3>电话留言</h3>
+						<p>
+							<cite class="tmCounts">--</cite>
+						</p>
+					</div></li>
+			</ul>
+		</div>
+	</div>
+<script type="text/javascript">
+if(typeof top.addTab === "function"){
+    top.addTab($('.addTab'));
+}
+getWaitDealTask();
+$('.task .tab-refresh').click(function(){
+	getWaitDealTask();
+});
+function getWaitDealTask(){
+ $('.task cite').text('--');
+ var data={"status":0,"ccCounts":142,"tmCounts":5};
+ if(data.status===0){
+	 $(".ccCounts").text(data.ccCounts)
+	 $(".tmCounts").text(data.tmCounts)
+ }
+}
+</script>
+</div>

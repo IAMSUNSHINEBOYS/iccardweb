@@ -1,0 +1,56 @@
+<div class="monitor">
+	<div class="data">
+		<div class="layui-card-header">服务器监控
+        <span class="tab-refresh"><i class="iconfont">&#xe69c;</i></span></div>
+		<div class="layui-card-body monitor-takerates">
+			<div class="layui-progress" lay-showpercent="yes" style="margin-top:46px;">
+				<h3>CPU使用率</h3>
+				<div class="layui-progress-bar cpu">
+					<span class="layui-progress-text cpuUsed">--</span>
+				</div>
+			</div>
+			<div class="layui-progress" lay-showpercent="yes">
+				<h3>内存占用率</h3>
+				<div class="layui-progress-bar memory">
+					<span class="layui-progress-text memoryUsed">--</span>
+				</div>
+			</div>
+			<div class="layui-progress last-child" lay-showpercent="yes">
+				<h3>磁盘使用率</h3>
+				<div class="layui-progress-bar disk">
+					<span class="layui-progress-text diskUsed">--</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+getServerMonitor();
+$('.monitor .tab-refresh').click(function(){
+	getServerMonitor();
+});
+function getServerMonitor(){
+ $('.monitor .layui-progress-text').text('--');
+ $(".cpu").css('width','')
+ $(".memory").css('width','')
+ $(".disk").css('width','')
+ var data={"status":0,"memoryUsed":28.0,"cpuUsed":5.0,"diskUsed":20.0};
+ if(data.status===0){
+		$(".cpuUsed").text(data.cpuUsed+'%');
+		$(".memoryUsed").text(data.memoryUsed+'%');
+		$(".diskUsed").text(data.diskUsed+'%');
+		$(".cpu").css('width',data.cpuUsed+'%');
+		if(data.cpuUsed>=90){
+			$(".cpu").addClass('layui-bg-red');
+		}
+		$(".memory").css('width',data.memoryUsed+'%')
+		if(data.memoryUsed>=90){
+			$(".memory").addClass('layui-bg-red');
+		}
+		$(".disk").css('width',data.diskUsed+'%')
+		if(data.diskUsed>=90){
+			$(".disk").addClass('layui-bg-red');
+		}
+  };
+}
+</script>

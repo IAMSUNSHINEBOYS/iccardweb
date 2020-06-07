@@ -1,0 +1,62 @@
+<div class="currfault">
+	<div class="data">
+		<div class="layui-card-header">
+			实时故障 <span class="tab-refresh"><i class="iconfont">&#xe69c;</i></span>
+		</div>
+		<div class="layui-card-body ">
+			<ul class="layui-row">
+				<li class="layui-col-xs3">
+					<div>
+						<h3>车道离线</h3>
+						<p>
+							<cite class="pcOffline">--</cite>
+						</p>
+					</div>
+				</li>
+				<li class="layui-col-xs3">
+					<div>
+						<h3>车道故障</h3>
+						<p>
+							<cite class="pcFault">--</cite>
+						</p>
+					</div>
+				</li>
+				<li class="layui-col-xs3">
+					<div>
+						<h3>车道离线</h3>
+						<p>
+							<cite class="mbxOffline">--</cite>
+						</p>
+					</div>
+				</li>
+				<li class="layui-col-xs3">
+					<div>
+						<h3>车道离线</h3>
+						<p>
+							<cite class="comOffline">--</cite>
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	if (typeof top.addTab === "function") {
+		top.addTab($('.addTab'));
+	}
+	getCurrfault();
+	$('.currfault .tab-refresh').click(function() {
+		getCurrfault();
+	});
+	function getCurrfault() {
+		$('.currfault cite').text('--');
+		var data={"status":0,"pcOffline":4,"pcFault":0,"mbxOffline":4,"comOffline":0};
+		if (data.status === 0) {
+			$(".pcOffline").text(data.pcOffline)
+			$(".pcFault").text(data.pcFault)
+			$(".mbxOffline").text(data.mbxOffline)
+			$(".comOffline").text(data.comOffline)
+		}
+	}
+</script>

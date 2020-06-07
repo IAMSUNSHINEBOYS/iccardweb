@@ -1,0 +1,51 @@
+<#include "include/include.html">
+<@listTable/>
+<script type="text/javascript">
+$(function() {
+	tipMenu('${queryForm???string("#"+queryForm+" ","")}')
+	$("form").attr('autocomplete', 'off');
+})
+</script>
+<div class="left-page">
+           第<span class="currentPage" id="${currentPage???string(currentPage,'currentPage')}">${pager.currentPage}</span>
+           页/共<span>${pager.totalPage}</span>页
+</div>
+<div class="centerpage">
+	共<span>${pager.totalSize}</span>条/每页<input type="text"
+		onkeyup="this.value=this.value.replace(/\D/, '');"
+		name="pager.pageSize" value="${pager.pageSize}" />条
+</div>
+<div id="${pagecontain???string(pagecontain,'pagecontain')}"></div>
+<script type="text/javascript">
+    var list='${mainList???string(mainList,'mainList')}';
+    var form='${queryForm???string(queryForm,'queryForm')}';
+    function pager(page,fun){
+    	if((fun=eval(fun)) && $.isFunction(fun)){
+    		fun(page);
+    	}else{
+    		getPager(page)
+    	}
+    }
+    order(list, form, function() {
+    	pager(1,'${pageFun}');
+    });
+	layui.use('laypage', function() {
+		var laypage = layui.laypage;
+		laypage.render({
+			elem : '${pagecontain???string(pagecontain,'pagecontain')}',
+			count : '${pager.totalSize}', //数据总数
+			curr : '${pager.currentPage}',//当前页
+			limit : '${pager.pageSize}',
+			groups : 4, //连续显示分页数
+			first : '首页',
+			last : '尾页',
+			layout : [ 'prev', 'page', 'next', 'skip' ],
+			jump : function(obj, first) {
+				if (!first) {
+					var curr = obj.curr;
+					pager(curr,'${pageFun}');
+				}
+			}
+		});
+	});
+</script>

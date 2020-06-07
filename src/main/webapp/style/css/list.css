@@ -1,0 +1,230 @@
+.iconfont_btn{
+    margin-right: 5px;
+}
+div[id^=pagecontain] {
+    float: right;
+    margin-right: 20px;
+}
+.centerpage {
+    float: left;
+    margin-top: 8px;
+    margin-left: 30px;
+}
+.centerpage span {
+    margin: 3px;
+    color: #1E9FFF;
+}
+.centerpage input {
+    width: 38px;
+    text-align: center;
+    color: #009E94;
+    border: 1px solid #d2d2d2;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 2px;
+    margin: 0 4px;
+}
+.topinput .layui-form-item {
+    width: 280px;
+    float: left;
+    clear: none !important;
+    margin-left: 20px;
+    box-sizing: border-box;
+}
+.clear {
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.topinput .layui-form {
+    padding: 0px 10px;
+}
+#tiptop {
+    position: fixed;
+    top: 50px;
+    left: 100px;
+    display: none;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    background-color: #fff;
+    z-index: 2000;
+    color: #333;
+    min-width: 80px;
+    padding: 4px 0;
+}
+#tiptop p {
+    cursor: pointer;
+    margin: 0;
+    padding: 5px 10px;
+    line-height: 24px;
+    font-size: 14px;
+}
+#tiptop  p i {
+    margin-right: 5px;
+}
+#tiptop  p:hover {
+    color: #DE0000;
+}
+.layui-table tbody tr:hover {
+    background-color: #ccc !important;
+    cursor: pointer !important;
+}
+.datechoose {
+    width: 350px !important;
+}
+.datechoose > div {
+    width: 110px !important;
+}
+.layui-form .firsttd {
+    padding: 3px;
+    width: 18px;
+}
+.tipclose {
+    z-index: 120000;
+}
+.left-page {
+    float: left;
+    margin-left: 35px;
+    margin-top: 10px;
+}
+.left-page span {
+    color: #1E9FFF;
+}
+.tabletip {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    background-color: #fff;
+    z-index: 2000;
+    color: #333;
+    padding: 4px 0;
+    display: none;
+    min-width: 80px;
+}
+.tabletip p {
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 24px;
+    cursor: pointer;
+}
+.tabletip p i {
+    margin-right: 6px;
+}
+.tabletip p:hover {
+    color: #DE0000;
+}
+td .layui-form-switch {
+    margin-top: 0px;
+    height: 16px;
+    line-height: 16px;
+}
+td .layui-form-switch i {
+    top: 1px;
+    width: 14px;
+    height: 14px;
+}
+.layui-table {
+    margin-top: 0 !important;
+    margin-bottom: 6px !important;
+}
+.layui-layer-content.layui-layer-padding span {
+    color: red;
+    font-size: 18px;
+}
+.placeholder {
+    color: #757575;
+}
+.switch-top-bottom {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    vertical-align: middle;
+    margin-left: 5px;
+    position: absolute;
+    box-sizing: border-box;
+}
+.row-top {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -1px;
+    border-left: 5px solid transparent !important;
+    border-right: 5px solid transparent !important;
+    border-top: 5px solid transparent !important;
+    border-bottom: 5px solid #ccc;
+    box-sizing: border-box;
+}
+.row-bottom {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: -1px;
+    border-left: 5px solid transparent !important;
+    border-right: 5px solid transparent !important;
+    border-bottom: 5px solid transparent !important;
+    border-top: 5px solid #ccc;
+    box-sizing: border-box;
+}
+.switch-top-bottom .active {
+    border-color: #333;
+}
+th[data-order] {
+    cursor: pointer;
+}
+tr.activetr {
+    background-color: #ddd !important;
+}
+#tiptop p:hover {
+    background-color: #ddd;
+}
+.tabletip p:hover {
+    background-color: #ddd;
+}
+.tr-odd {
+    background-color: #f2f2f2;
+}
+.dialogList {
+    padding: 4px;
+}
+.footer div {
+    float: left;
+    width: 33.333%;
+    color: red;
+    line-height: 40px;
+    font-size: 15px;
+    background-color: #f2f2f2;
+    text-align: center;
+}
+.total-table tbody tr:hover {
+    background-color: #f2f2f2 !important;
+    cursor: default !important;
+}
+.total-table td {
+    padding: 6px !important;
+}
+.total-table {
+    background-color: #f2f2f2;
+    margin-top: 0px !important;
+    color: red;
+}
+.table_btn{
+	padding-top:6px!important;
+    padding-bottom:6px!important;
+}
+.table_btn .layui-btn-sm{
+	height: 24px;
+    line-height: 24px;
+    padding: 0 10px;
+    font-size: 12px;
+}
+.layui-table .layui-badge-rim{
+    height: 16px;
+    line-height: 16px;
+}
+.layui-table .layui-badge{
+    height: auto;
+}

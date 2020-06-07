@@ -1,0 +1,46 @@
+<div class="business">
+	<div class="data">
+		<div class="layui-card-header">昨日业务</div>
+		<div class="layui-card-body ">
+			<ul class="layui-row">
+				<li class="layui-col-xs3">
+					<div class="businessCounts">
+						<h3>开户数</h3>
+						<p>
+							<cite class="openCounts">--</cite>
+						</p>
+					</div></li>
+				<li class="layui-col-xs3">
+					<div class="businessCounts">
+						<h3>销户数</h3>
+						<p>
+							<cite class="cancelCounts">--</cite>
+						</p>
+					</div></li>
+				<li class="layui-col-xs3">
+					<div class="businessCounts">
+						<h3>收入金额</h3>
+						<p>
+							<cite class="incomeFees">--</cite>
+						</p>
+					</div></li>
+				<li class="layui-col-xs3">
+					<div class="businessCounts">
+						<h3>支出金额</h3>
+						<p>
+							<cite class="exportFees">--</cite>
+						</p>
+					</div></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+ var data={"status":0,"openCounts":6,"cancelCounts":35,"incomeFees":2070.00,"exportFees":9828.00};
+ if(data.status===0){
+	 $(".openCounts").text(data.openCounts)
+	 $(".cancelCounts").text(data.cancelCounts)
+	 $(".incomeFees").text(data.incomeFees)
+	 $(".exportFees").text(data.exportFees)
+ }
+</script>

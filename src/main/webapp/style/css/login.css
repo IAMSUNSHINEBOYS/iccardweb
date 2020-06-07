@@ -1,0 +1,188 @@
+html {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+    font-size: 14px;
+    font-family: Helvetica Neue, Helvetica, PingFang SC, 微软雅黑, Tahoma, Arial, sans-serif;
+}
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+#app {
+    height: 100%;
+}
+.top {
+    float: left;
+    font-size: 22px;
+    color: #000;
+    height: 30px;
+    line-height: 30px;
+    padding: 15px 0;
+    margin-left: 260px;
+}
+.top img {
+    width: 60px;
+    height: 40px;
+    vertical-align: middle;
+    margin-right: 20px;
+    margin-left: 200px;
+}
+.content {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.content > div {
+    width: 100%;
+    height: 100%;
+    padding-top: 1px;
+    box-sizing: border-box;
+    background: url(../images/login/login_1.png) no-repeat;
+    background-size: 100% 100%;
+    background-size: cover/9;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/login/login_1.png",sizingMethod='scale');
+    position: relative;
+}
+#login {
+    width: 410px;
+    height: 370px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -185px;
+    margin-left: -50px;
+    background-color: #fff;
+    background: url(../images/login/loginbg.png) no-repeat;
+    background-size: 100% 100%;
+    background-size: cover/9;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/login/loginbg.png",sizingMethod='scale');
+}
+#login form {
+    background-color: #fff;
+    width: 340px;
+    margin-left: 70px;
+    height: 100%;
+}
+.topname {
+    margin: 0;
+    line-height: 80px;
+    height: 80px;
+    background-color: #1AA194;
+    color: #fff;
+    text-indent: 30px;
+    font-size: 18px;
+}
+
+#loginsubmit {
+    margin-top: 25px;
+    text-align: center;
+    padding: 0;
+}
+#loginsubmit input {
+    width: 256px;
+    line-height: 40px;
+    height: 40px;
+    background-color: #1AA194;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    letter-spacing: 10px;
+    cursor: pointer;
+}
+form > div {
+    height: 36px;
+    width: 250px;
+    margin: 15px auto;
+    padding: 2px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    overflow: hidden;
+}
+form div input {
+    height: 34px;
+    line-height: 34px;
+    width: 200px;
+    border: none;
+    outline: none;
+    padding: 1px 0px;
+    vertical-align: middle;
+}
+form div img {
+    width: 20px;
+    height: 20px;
+    margin-left: 2px;
+    margin-right: 5px;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    vertical-align: middle;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #fff inset;
+}
+.checkcode {
+    border: none;
+    padding: 0;
+    height: 42px;
+    width: 256px;
+}
+
+.checkcode span {
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    vertical-align: middle;
+    box-sizing: border-box;
+    padding: 2px 0;
+    line-height: 36px;
+}
+.checkcode input {
+    width: 125px;
+    height: 34px;
+    line-height: 34px;
+    float: right;
+    margin-left: 5px
+}
+.checkcode label {
+    line-height: 34px;
+}
+#code {
+    width: 85px;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    margin-left: 8px;
+    margin-right: 4px;
+    margin-top: 0px;
+}
+.checkcode div{
+    float: right;
+}
+.placeholder {
+    position: absolute;
+    color: #758082;
+    border: none !important;
+    z-index: 0;
+    cursor: text;
+}
+:-webkit-input-placeholder {
+    color: #ccc;
+}
+#tip {
+    position: absolute;
+    top: 50px;
+    left: 140px;
+    width: 200px;
+    height: 16px;
+    overflow: hidden;
+    text-align: center;
+    color: #DE0000;
+    font-size: 14px;
+    display: none;
+}

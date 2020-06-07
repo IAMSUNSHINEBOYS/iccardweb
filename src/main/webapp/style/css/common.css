@@ -1,0 +1,207 @@
+.placeholder {
+    color: #758082;
+    position: absolute;
+    border: none !important;
+    z-index: 0;
+    cursor: text;
+    display: none;
+}
+.show-more {
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100px;
+    cursor: pointer;
+}
+.layui-times {
+    position: absolute;
+    right: -4px;
+    top: -58px;
+    color: #666;
+    font-size: 26px !important;
+}
+.layui-table-tips-close {
+    cursor: pointer;
+}
+.layui-table-tips-close:hover {
+    color: #999;
+}
+.layui-table-tips {
+    z-index: 19891039;
+    position: absolute;
+}
+.layui-layer-title-full {
+    margin: 0 15px;
+    padding: 0px 80px 0px 20px;
+}
+.layui-layer-setwin-full {
+    right: 30px !important;
+}
+.m {
+    vertical-align: middle;
+}
+.inline {
+    width: 285px;
+    float: left;
+    clear: none !important;
+    margin-left: 10px;;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+form input.layui-input[disabled] {
+    background: #f2f2f2;
+    color: #595963 !important;
+}
+.showImage {
+    cursor: pointer;
+    max-height: 560px;
+    max-width: 700px;
+}
+.showImage img{
+    height: 100%;
+    width: 100%;
+}
+.detail {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.detail tr {
+    background-color: #fff !important;;
+}
+.title_td {
+    background-color: #FBFBFB;
+    text-align: right;
+    position: static !important;
+    width: 90px;
+}
+.detail .layui-table tbody tr:hover {
+    background-color: #fff !important;
+    cursor: default !important;
+}
+.flex-div {
+    position: relative;
+    width: 100%;
+}
+.flex-div .flex-content {
+    position: absolute;
+    top: 20px;
+    left: -9px;
+    display: none;
+    border-bottom: 1px solid #ddd;
+    background-color: #ccc;
+    width: 100%;
+    padding: 0 9px;
+    padding-bottom: 8px;
+    z-index: 100;
+}
+.flex-content p {
+    margin-top: 10px;
+}
+
+.admin-heads .layui-upload-img {
+    width: 120px;
+    height: 120px;
+}
+
+.admin-heads .layui-upload-list {
+    margin: 10px 0 0 0;
+}
+
+.admin-heads .layui-upload {
+    text-align: center;
+    padding: 10px 0 0 0;
+}
+
+.admin-heads .layui-btn .iconfont {
+    margin-right: 5px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.admin-heads .layui-upload-wrap {
+    display: block\9;
+}
+.layui-bg-yellow {
+    background-color: #FFB800 !important;
+}
+.layui-bg-skyblue {
+    background-color: #41B6E5 !important;
+}
+.layui-bg-lightgreen {
+    background-color: #21CB0D !important;
+}
+.layui-bg-lightgray {
+    background-color: #C6BFAF !important;
+}
+.layui-bg-lightred {
+    background-color: #FFA07A !important;
+}
+.refresh-btn {
+   float: right!important;
+   margin-right:5px!important;
+   width:63px!important;
+   padding: 0 8px!important;
+   font-size: 14px!important;
+}
+.refresh {
+    position: absolute;
+    right: 45px;
+    top: 0px;
+    height: 43px;
+    width: 43px;
+    line-height: 43px;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block
+}
+.ui-autocomplete {
+    max-height: 300px;
+    overflow-y: auto;
+}
+.operate .layui-btn-sm {
+    height: 24px;
+    line-height: 24px;
+    padding: 0 10px;
+    font-size: 12px;
+    margin-left:2px;
+}
+.operate {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+}
+.warn {
+    color: red;
+}
+.nodata {
+    margin: 15px auto;
+    text-align: center;
+}
+.nodata i {
+    font-size: 50px;
+    color: #D8D8D8;
+}
+.nodata div {
+    text-align: center;
+    color: #666;
+    font-size: 15px;
+}
+.addTab{
+    cursor: pointer;
+}
+.layui-btn .iconfont{
+    vertical-align: middle;
+}
+
+fieldset.field legend {
+    margin-left: 20px;
+    padding: 0 10px;
+    font-size: 12px;
+    font-weight: 400;
+}
+fieldset .fieldset-box {
+    height: 300px;
+    overflow: auto;
+    padding: 5px;
+}

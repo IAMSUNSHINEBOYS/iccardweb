@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<table class="layui-table" lay-skin="row" lay-even>
+	<thead>
+		<tr>
+		    <th>登/退</th>
+			<th>登录名</th>
+			<th>用户名</th>
+			<th>性别</th>
+			<th>电话号码</th>
+			<th>登录IP</th>
+			<th data-order="loginTime">登录时间</th>
+			<th data-order="exitTime">退出时间</th>
+			<th>登录时长</th>
+		</tr>
+	</thead>
+	<tbody>
+		<#list list as item>
+			<tr>
+			    <td>${item.recordTypeStr}</td>
+				<td>${item.adminUserName}</td>
+				<td>${item.adminName}</td>
+				<td>${item.sex}</td>
+				<td>${item.phone}</td>
+				<td>${item.ip}</td>
+				<td>${(item.loginTime?string("yyyy-MM-dd HH:mm:ss"))!}</td>
+				<td>${(item.exitTime?string("yyyy-MM-dd HH:mm:ss"))!}</td>
+				<td>${item.time}</td>
+			</tr>
+		</#list>
+	</tbody>
+</table>
+<#assign mainList='dialogMainList'>
+<#assign queryForm='dialogQueryForm'>
+<#assign pagecontain='pagecontainDialog'>
+<#assign pageFun='getDialogPager'>
+<#include "include/pager.html">

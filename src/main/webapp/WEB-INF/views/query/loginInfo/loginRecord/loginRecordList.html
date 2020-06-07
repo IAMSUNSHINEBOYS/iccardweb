@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<table class="layui-table table-contextmenu" lay-skin="row" lay-even>
+	<thead>
+		<tr>
+			<@shiro.hasPermission name="sys:loginRecord:delete">
+			<th class="firsttd"><input type="checkbox"
+				lay-filter="allChoose" lay-skin="primary" /></th>
+			</@shiro.hasPermission>
+			<th>登/退</th>
+			<th>登录名</th>
+			<th>用户名</th>
+			<th>性别</th>
+			<th>电话号码</th>
+			<th>登录IP</th>
+			<th data-order="loginTime">登录时间</th>
+			<th data-order="exitTime">退出时间</th>
+			<th>登录时长</th>
+		</tr>
+	</thead>
+	<tbody>
+		<#list list as item>
+		<tr>
+			<@shiro.hasPermission name="sys:loginRecord:delete">
+			<td class="firsttd"><input type="checkbox" value="${item.id}"
+				data-ignore lay-skin="primary" lay-filter="singleChoose" name="ids">
+			</td> 
+			</@shiro.hasPermission>
+			<td>${item.recordTypeStr}</td>
+			<td>${item.adminUserName}</td>
+			<td>${item.adminName}</td>
+			<td>${item.sex}</td>
+			<td>${item.phone}</td>
+			<td>${item.ip}</td>
+			<td>${(item.loginTime?string("yyyy-MM-dd HH:mm:ss"))!}</td>
+			<td>${(item.exitTime?string("yyyy-MM-dd HH:mm:ss"))!}</td>
+			<td>${item.time}
+				<div class="tabletip">
+					<@shiro.hasPermission name="sys:loginRecord:delete">
+					<p onclick="query_loginRecord_delete(${item.id});">
+						<i class="iconfont">&#xe676;</i>删除
+					</p>
+					</@shiro.hasPermission>
+				</div></td>
+		</tr>
+		</#list>
+	</tbody>
+</table>
+<#assign pageFun='getLoginRecordPager'> 
+<#assign currentPage='currentPageLoginRecord'> 
+<#assign pagecontain='pagecontainLoginRecord'> 
+<#assign mainList='mainLoginRecordList'> 
+<#assign queryForm='queryLoginRecordForm'>
+<#include "include/include.html">
+<@listBottom/>
+<script type="text/javascript">
+	layui.use('form', function() {
+		var form = layui.form;
+		form.on('radio(lsex)', function(data) {
+			getLoginRecordPager(1);
+		});
+	});
+</script>

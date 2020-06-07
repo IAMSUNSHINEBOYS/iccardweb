@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>功能用户列表</title>
+<#include "include/include.html">
+<@listStyle/>
+<@sysManage/>
+<script type="text/javascript">
+	function getDialogPager(pager) {
+		sysManage_menu_menuAdminInfoPage(pager, '${id}')
+	}
+</script>
+</head>
+<body>
+	<div style="padding:4px;" id="menuAdminInfo">
+		<#include "sysManage/menu/menuAdminList.html">
+	</div>
+</body>
+</html>

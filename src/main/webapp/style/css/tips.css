@@ -1,0 +1,11 @@
+.data div {
+	color: #333333;
+	border-bottom: 1px solid #e6e6e6;
+	font-size: 14px;
+	height: 28px;
+	line-height: 28px;
+}
+
+.data .data-bottom {
+	border-bottom: 0;
+}

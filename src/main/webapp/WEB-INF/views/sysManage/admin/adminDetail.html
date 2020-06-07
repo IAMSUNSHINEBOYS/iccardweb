@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>系统用户详情</title>
+</head>
+<body>
+	<div class="detail">
+		<table class="layui-table">
+			<tr>
+				<td class="title_td">姓名</td>
+				<td>${admin.name}</td>
+				<td class="title_td" rowspan="2">头像</td>
+				<td rowspan="2" style="padding:0px 15px;"><img
+					src="${contextPath}/heads/${admin.headImgPath}"
+					style="cursor:pointer;height:70px;width:70px;"
+					onclick="showImg(this)">
+				</td>
+			</tr>
+			<tr>
+				<td class="title_td">性别</td>
+				<td>${admin.sex}</td>
+			</tr>
+			<tr>
+				<td class="title_td">登录名</td>
+				<td>${admin.username}</td>
+				<td class="title_td">电话号码</td>
+				<td>${admin.phone}</td>
+			</tr>
+			<tr>
+				<td class="title_td">创建时间</td>
+				<td colspan="3">${(admin.createTime?string("yyyy-MM-dd HH:mm:ss"))!}</td>
+			</tr>
+			<tr>
+				<td class="title_td">最后登录时间</td>
+				<td colspan="3">${(admin.lastTime?string("yyyy-MM-dd HH:mm:ss"))!}</td>
+			</tr>
+			<tr>
+				<td class="title_td">最后登录IP</td>
+				<td>${admin.lastIp}</td>
+				<td class="title_td">启用</td>
+				<td>${admin.validStr}</td>
+			</tr>
+			<tr>
+				<td class="title_td">角色</td>
+				<td colspan="3">${admin.rolesStr}</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

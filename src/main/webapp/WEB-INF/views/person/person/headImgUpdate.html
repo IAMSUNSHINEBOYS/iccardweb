@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>修改头像</title> 
+<#include "include/include.html"> 
+<@validate/>
+<@fileupload/>
+<script type="text/javascript"
+	src="${contextPath}/script/validate/headImgUpdateValidate.js"></script>
+<style type="text/css">
+.layui-upload-img {
+	width: 120px;
+	height: 120px;
+}
+
+.layui-upload-list {
+	margin: 10px 0 0 0;
+}
+
+.layui-upload {
+	text-align: center;
+	padding: 10px 0 0 0;
+}
+
+.layui-btn .iconfont {
+	margin-right: 5px;
+	font-size: 18px;
+	vertical-align: middle;
+}
+
+.layui-upload-wrap {
+	display: block\9;
+}
+</style>
+</head>
+<body>
+	<form id="headImaUpdateForm">
+		<div class="layui-upload">
+			<div class="layui-btn fileinput-button" id="selectFile">
+				<i class="layui-icon">&#xe637;</i>选择头像<input type="file" id="file" name="file">
+			</div>
+			<div class="layui-upload-list">
+				<img class="layui-upload-img" id="headImgPreview" class="image"
+					onclick="showImg(this)"
+					src="${contextPath}/heads/${admin.headImgPath}">
+			</div>
+		</div>
+		<input type="hidden" id="headImgName" name="headImgName">
+	</form>
+	<script type="text/javascript">
+		$('#file').on('change', function(e) {
+			var index = load();
+			$.ajaxFileUpload({
+				fileElementId : [ "file" ],
+				secureuri : false,
+				url : "person/headImgUpdateUpload.do",
+				type : "POST",
+				dataType : "JSON",
+				data : getJsonData("headImaUpdateForm"),
+				success : function(data) {
+					if (data.status == '0') {//成功
+						$("#headImgName").val(data.imgName);
+						$("#headImgPreview").attr("src", data.path);
+						$("#headImgName").valid();
+					} else if (data.status == '2') {//格式不正确
+						msg(data.msg, 2);
+					} else {//上传失败
+						msg("选择头像失败", 2);
+					}
+				},
+				error : function(status) {
+					msg('选择头像失败', 2);
+				},
+				complete : function(xml, status) {
+					loadClose(index);
+				}
+			});
+		})
+	</script>
+</body>
+</html>

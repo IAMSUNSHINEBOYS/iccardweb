@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>修改密码</title> 
+<#include "include/include.html"> 
+<@validate/>
+<script type="text/javascript"
+	src="${contextPath}/script/validate/pswUpdateValidate.js"></script>
+<script type="text/javascript">
+	$(function() {
+		placeholder();
+	});
+</script>
+</head>
+<body>
+	<form id="pswUpdateForm" class="layui-form layui-form-pane"
+		style="margin:10px;">
+		<div class="layui-form-item">
+			<label class="layui-form-label">姓名</label>
+			<div class="layui-input-block">
+				<input type="text" value="${admin.name}" disabled
+					class="layui-input layui-disabled" />
+
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">登录名</label>
+			<div class="layui-input-block">
+				<input type="text" value="${admin.username}" disabled
+					class="layui-input layui-disabled" />
+
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">当前密码</label>
+			<div class="layui-input-block">
+				<input type="password" name="oldPassword" autocomplete="off"
+					id="oldPassword" placeholder="输入当前密码" class="layui-input" />
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">新密码</label>
+			<div class="layui-input-block">
+				<input type="password" name="newPassword" id="newPassword"
+					autocomplete="off" placeholder="输入新密码" class="layui-input" />
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">确认密码</label>
+			<div class="layui-input-block">
+				<input type="password" name="confirmPsw" autocomplete="off"
+					placeholder="输入确认密码" class="layui-input" />
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button type="button" class="layui-btn" id="pswUpdateSubmit">提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+		<input type="hidden" value="${publicKey}" id="publicKey" /> <input
+			type="hidden" value="${token}" id="token" />
+	</form>
+</body>
+</html>

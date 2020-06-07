@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>功能角色列表</title>
+<#include "include/include.html">
+<@listStyle/>
+<@sysManage/>
+<script type="text/javascript">
+	function getDialogPager(pager) {
+		sysManage_menu_menuRoleInfoPage(pager, '${id}')
+	}
+</script>
+</head>
+<body>
+	<div style="padding:4px;" id="menuRoleInfo">
+		<#include "sysManage/menu/menuRoleList.html">
+	</div>
+</body>
+</html>

@@ -1,0 +1,287 @@
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow-y: hidden;
+}
+#ietiptop {
+    position: absolute;
+    top: 42px;
+    left: 0px;
+    width: 100%;
+    height: 10px;
+    background-color: #fff;
+    z-index: 40;
+}
+#ietipleft {
+    position: absolute;
+    top: 42px;
+    left: 0px;
+    width: 4px;
+    height: 100%;
+    background-color: #fff;
+    z-index: 900;
+}
+.top_header {
+    height: 45px;
+    width: 100%;
+    background-color: #23262E;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    position: fixed;
+}
+.top_header .layui-nav {
+    height: 45px;
+    line-height: 45px;
+}
+.top_header .layui-nav .layui-nav-item {
+    line-height: 45px;
+    height: 45px;
+}
+.logo {
+    line-height: 45px;
+    height: 45px;
+    margin-left: 60px;
+    color: #fff;
+    font-size: 18px;
+    float: left;
+}
+.top-menu {
+    position: absolute;
+    right: 10px;
+    background: none;
+}
+.top-menu .layui-nav-child {
+    top: 47px;
+}
+.left_menu{
+    width: 200px;
+    background-color: #393D49;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 45px;
+    overflow-x: hidden;
+    z-index: 10000;
+}
+.layui-tab-content .layui-tab-item{
+    overflow-y: hidden; 
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.side-sroll {
+    width: 220px;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: relative;
+}
+.left_menu li {
+    width: 200px!important;
+}
+.left_menu ul li a i {
+    margin-right: 5px;
+}
+.right_body {
+   width: auto;
+    position: fixed;
+    left: 200px;
+    right: 0;
+    overflow: hidden;
+    bottom: 0;
+    top: 45px;
+}
+.right_body> .layui-tab {
+    width: auto;
+    height: 100%;
+    padding-bottom: 0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.right_body > .layui-tab > ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 50;
+    padding: 0 5px;
+}
+.right_body .layui-tab-content > div {
+    height: 100%;
+}
+.left_menu dl dd a {
+    cursor: pointer;
+    padding-left: 30px !important;
+}
+.layui-tab-item iframe {
+    overflow: hidden;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+.right_body .layui-tab-more {
+    box-sizing: border-box;
+}
+.layui-index .layui-tab-close {
+
+}
+.layui-tab-title li > div p {
+    margin: 0;
+    padding: 5px 10px;
+    line-height: 24px;
+    font-size: 14px;
+    color: #333;
+}
+.layui-tab-title li > div {
+    position: absolute;
+    top: 38px;
+    left: 50px;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    background-color: #fff;
+    z-index: 999;
+}
+.layui-tab-title li > div p:hover {
+    color: #DE0000;
+}
+.layui-tab-title li i {
+    margin-right: 5px;
+}
+.layui-tab-title {
+    overflow: visible !important;
+}
+.layui-nav {
+    background-color: #20222A !important;
+}
+.nav-current img {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    margin-right: 2px;
+    margin-bottom: 2px;
+}
+.nav-current .layui-nav-child a {
+    height: 35px;
+    padding: 0 10px !important;
+}
+.nav-current .layui-nav-child dd a:hover {
+    color: #DE0000;
+}
+.nav-current .layui-nav-child dd i {
+    margin-right: 5px;
+}
+.layui-tab-content {
+    height: 100%;
+    padding-top: 50px;
+    box-sizing: border-box;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.mainTabTips {
+    padding: 4px 0;
+    position: fixed !important;
+}
+.mainTabTips i {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.mainTabTips p {
+    text-align: left;
+}
+.mainTabTips p:hover {
+    background-color: #ddd;
+}
+.rightnav .layui-nav-child {
+    top: 62px;
+}
+
+.layui-layer-content.layui-layer-padding span {
+    color: red;
+    font-size: 18px;
+}
+.weather{
+    margin-right:180px;
+    position: absolute;
+    right:2px;
+    color: #c2c2c2;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.w1{
+    font-size: 20px;
+    height: 45px;
+    line-height: 45px;
+}
+.w2{
+   position: relative;
+   display: inline-block;
+   height: 45px;
+   vertical-align: middle;
+   padding-top: 8px;
+}
+.w3,.w4{
+    display: block;
+    text-align: left;
+    font-style: normal;
+    height: 12px;
+    font-size: 12px;
+}
+.layout-left{
+    float:left;
+    margin-left:20px;
+    line-height: 45px;
+    width:45px;
+    height: 45px;
+}
+.flexible{
+    margin:6px 6px;
+    height:33px;
+    line-height: 33px;
+    width:33px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #393D49;
+    text-align: center;
+}
+.left_menu .layui-nav .layui-nav-more{
+	right:15px;
+}
+.site-mobile{
+	display: none;
+}
+/*手机设备适配*/
+@media screen and (max-width: 750px) {
+   .site-mobile-shade {
+        display: none;
+        content: '';
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0,0,0,.3);
+        z-index: 9999;
+    }
+    .left_menu {
+        width : 0
+    }
+    .right_body{
+        left: 0;
+    }
+    .top_header .logo {
+        display: none;
+    }
+    .site-mobile{
+        display: block;
+    }
+    .layui-tab-item {
+       overflow: auto; 
+       -webkit-overflow-scrolling: touch; 
+     }
+}

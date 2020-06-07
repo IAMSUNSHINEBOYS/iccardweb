@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alen.mapper.LoginRecordMapper">
+	<insert id="saveLoginRecord">
+		insert into ic_login_record(id,recordType,adminId,adminName,adminUserName,sex,phone,loginTime,exitTime,sessionId,ip)
+        values(SEQUENCE_LOGINRECORD_ID.nextval,#{recordType},#{adminId},#{adminName},#{adminUserName},#{sex},#{phone},#{loginTime},#{exitTime},#{sessionId},#{ip})
+    </insert>
+    
+    <delete id="deleteByIds">
+		delete from ic_login_record where id in
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<select id="getLoginRecordList" resultType="com.alen.entity.LoginRecord">
+	  select id,recordType,adminName,adminUserName,sex,phone,loginTime,exitTime,ip from ic_login_record
+	  <where>
+	     <if test="loginRecord.recordType!=null and loginRecord.recordType.trim()!=''">recordType=#{loginRecord.recordType}</if>
+	     <if test="loginRecord.adminId!=null">adminId=#{loginRecord.adminId}</if>
+	     <if test="loginRecord.adminName!=null and loginRecord.adminName.trim()!=''">adminName=#{loginRecord.adminName}</if>
+	     <if test="loginRecord.adminUserName!=null and loginRecord.adminUserName.trim()!=''"> and adminUserName=#{loginRecord.adminUserName}</if>
+	     <if test="loginRecord.sex!=null and loginRecord.sex.trim()!=''">and sex=#{loginRecord.sex}</if>
+	     <if test="loginRecord.phone!=null and loginRecord.phone.trim()!=''">and phone=#{loginRecord.phone}</if>
+	     <if test="dateMap.s_loginTime!=null">and loginTime&gt;=#{dateMap.s_loginTime}</if>
+	     <if test="dateMap.e_loginTime!=null">and loginTime&lt;=#{dateMap.e_loginTime}</if>
+	   </where>
+	  </select>
+</mapper>

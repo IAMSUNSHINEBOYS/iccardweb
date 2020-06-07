@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alen.mapper.AdminMapper">
+	<select id="getPermsByAdminId" resultType="string">
+	    select perms from sys_menu m where
+		  exists(select r.id from sys_admin_role ar inner join sys_role r on ar.role=r.id
+		  inner join sys_role_menu rm on rm.role=r.id and ar.admin=#{amdinId} where rm.menu=m.id)
+
+	</select>
+	
+	<select id="getAdminByUsername" resultType="com.alen.entity.Admin">
+		select id,username,name,password,sex,phone,createTime,lastIp,lastTime,valid,headImg 
+		from sys_admin where username=#{username}
+	</select>
+	
+	<select id="getAdminById" resultType="com.alen.entity.Admin">
+		select id,username,name,password,sex,phone,createTime,lastIp,lastTime,valid,headImg 
+		from sys_admin where id=#{id}
+	</select>
+	
+	<update id="updateLoginAdmin">
+	     update sys_admin set lastIp=#{lastIp},lastTime=#{lastTime} where id=#{id}
+	</update>
+	
+	<select id="getAdminsByMeunId" resultType="com.alen.entity.Admin">
+		SELECT id,username,NAME,sex,phone,createTime,lastIp,lastTime,valid FROM sys_admin a WHERE
+        EXISTS(SELECT * FROM sys_admin_role ar INNER JOIN sys_role r ON r.id=ar.role 
+        INNER JOIN sys_role_menu rm ON rm.role=r.id AND rm.menu=#{menuId} where a.id=ar.admin)
+	</select>
+	
+	<select id="getAdminsAll" resultType="com.alen.entity.Admin">
+		select id,username,name,sex,phone,createTime,lastIp,lastTime,valid from sys_admin
+	</select>
+	 
+	<select id="getAdminList" resultMap="getAdminListMap">
+		select a.id,a.username,a.name,a.sex,a.phone,a.createTime,a.lastIp,a.lastTime,a.valid from sys_admin a
+		<where>
+			<if test="admin.username!=null and admin.username.trim()!=''">and a.username=#{admin.username}</if>
+			<if test="admin.name!=null and admin.name.trim()!=''">and a.name=#{admin.name}</if>
+			<if test="admin.valid!=null and admin.valid.trim()!=''">and a.valid=#{admin.valid}</if>
+			<if test="dateMap.s_lastTime!=null">and a.lastTime&gt;=#{dateMap.s_lastTime}</if>
+			<if test="dateMap.e_lastTime!=null">and a.lastTime&lt;=#{dateMap.e_lastTime}</if>
+			<if test="admin.roleId!=null">and exists (select role from sys_admin_role where role=#{admin.roleId} and admin=a.id)</if>
+		</where>
+	 </select>
+	 
+	 <resultMap type="com.alen.entity.Admin" id="getAdminListMap">
+		<id column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="name" property="name" />
+		<result column="sex" property="sex" />
+		<result column="phone" property="phone" />
+		<result column="createTime" property="createTime" />
+		<result column="lastIp" property="lastIp" />
+		<result column="lastTime" property="lastTime" />
+		<result column="valid" property="valid" />
+		<result column="headImg" property="headImg" />
+		<collection property="roles" ofType="string" select="getRoleNameByAdminId" column="{adminId=id}"/>
+	 </resultMap>
+	 
+	 <select id="getRoleNameByAdminId" resultType="string">
+		SELECT name FROM sys_role r inner join sys_admin_role ar on ar.role=r.id where ar.admin=#{adminId}
+	</select>
+	
+	 <select id="getAdminAndRoleById" resultMap="getAdminAndRoleByIdMap">
+		select a.id,a.username,a.name,a.sex,a.phone,a.createTime,a.lastIp,a.lastTime,a.valid,r.name rname from
+		sys_admin a LEFT JOIN sys_admin_role ar ON ar.admin=a.id LEFT JOIN sys_role r ON r.id=ar.role where a.id=#{id}
+	 </select>
+	 
+	 <resultMap type="com.alen.entity.Admin" id="getAdminAndRoleByIdMap">
+		<id column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="name" property="name" />
+		<result column="sex" property="sex" />
+		<result column="phone" property="phone" />
+		<result column="createTime" property="createTime" />
+		<result column="lastIp" property="lastIp" />
+		<result column="lastTime" property="lastTime" />
+		<result column="valid" property="valid" />
+		<collection property="roles" ofType="string">
+		   <result column="rname" property="roles" />
+		</collection>
+	 </resultMap>
+	 
+	 <insert id="saveAdmin" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+	    insert into sys_admin(id,name,username,phone,sex,valid,createTime,password)
+	    values(SEQUENCE_ADMIN_ID.nextval,#{name},#{username},#{phone},#{sex},#{valid},#{createTime},#{password})
+	 </insert>
+	 
+	 <insert id="saveAdminRole">
+	    insert into sys_admin_role(admin,role) values(#{adminId},#{roleId})
+	 </insert>
+	 
+	 <insert id="updateAdminById">
+	    update sys_admin
+	    <set>
+	       <if test="username!=null and username.trim()!=''">username=#{username},</if>
+	       <if test="name!=null and name.trim()!=''">name=#{name},</if>
+	       <if test="sex!=null and sex.trim()!=''">sex=#{sex},</if>
+	       <if test="phone!=null and phone.trim()!=''">phone=#{phone},</if>
+	       <if test="valid!=null and valid.trim()!=''">valid=#{valid},</if>
+	       <if test="password!=null and password.trim()!=''">password=#{password},</if>
+	       <if test="headImg!=null and headImg.trim()!=''">headImg=#{headImg},</if>
+	    </set>
+	     where id=#{id}
+	 </insert>
+	 
+	 <delete id="deleteAdminRoleById">
+	    delete from sys_admin_role where admin=#{id}
+	 </delete>
+	 
+	 <delete id="deleteByIds">
+		delete from sys_admin where id in
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	 </delete>
+	 
+	 <delete id="deleteAdminRoleByIds">
+	    delete from sys_admin_role where admin in
+	    <foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	 </delete>
+</mapper>

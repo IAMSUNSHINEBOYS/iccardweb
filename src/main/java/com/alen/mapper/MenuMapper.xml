@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alen.mapper.MenuMapper">
+	<resultMap type="com.alen.entity.MainMenu" id="mainMenuMap">
+		<id column="id" property="id" />
+		<result column="parent" property="parent" />
+		<result column="name" property="name" />
+		<result column="menuType" property="menuType" />
+		<result column="menuUrl" property="menuUrl" />
+		<result column="orderNo" property="orderNo" />
+		<result column="icon" property="icon" />
+	</resultMap>
+	
+	<resultMap type="com.alen.entity.Menu" id="menuMap">
+		<id column="id" property="id" />
+		<result column="parent" property="parent" />
+		<result column="name" property="name" />
+		<result column="menuType" property="menuType" />
+		<result column="menuUrl" property="menuUrl" />
+		<result column="perms" property="perms" />
+		<result column="orderNo" property="orderNo" />
+		<result column="enable" property="enable" />
+		<result column="icon" property="icon" />
+	</resultMap>
+	
+	<resultMap type="com.alen.entity.UserMenu" id="userMenuMap">
+		<id column="id" property="id" />
+		<result column="parent" property="parent" />
+		<result column="name" property="name" />
+		<result column="menuType" property="menuType" />
+		<result column="orderNo" property="orderNo" />
+	</resultMap>
+	
+	<select id="getMainMenuByAdminId" resultMap="mainMenuMap">
+		select id,parent,name,menuType,menuUrl,orderNo,icon from sys_menu m where enable='1' and (menuType=1 or menuType=2) and
+		  exists(select r.id from sys_admin_role ar inner join sys_role r on ar.role=r.id
+		  inner join sys_role_menu rm on rm.role=r.id and ar.admin=#{amdinId} where rm.menu=m.id) order by orderNo
+	</select>
+	
+	<select id="getUserMenuByAdminId" resultMap="userMenuMap">
+		select id,parent,name,menuType,orderNo from sys_menu m where enable='1' and
+		  exists(select r.id from sys_admin_role ar inner join sys_role r on ar.role=r.id
+		  inner join sys_role_menu rm on rm.role=r.id and ar.admin=#{amdinId} where rm.menu=m.id)
+		  order by parent,orderNo
+	</select>
+	
+	<select id="getAllMenu" resultMap="menuMap">
+		select id,parent,name,menuType,menuUrl,perms,orderNo,enable,icon from sys_menu order by orderNo
+	</select>
+	
+	<insert id="saveMenu">
+		insert into
+		sys_menu(id,parent,name,menuType,menuUrl,perms,orderNo,icon,enable)
+		values(SEQUENCE_MENU_ID.nextval,#{parent},#{name},#{menuType},#{menuUrl},#{perms},#{orderNo},#{icon},#{enable})
+	</insert>
+	
+	<update id="updateMenu">
+		update sys_menu
+		<set>
+		 <if test="name!=null and name.trim()!=''">name=#{name},</if>
+		 <if test="menuType!=null and menuType.trim()!=''">menuType=#{menuType},</if>
+		 <if test="menuUrl!=null and menuUrl.trim()!=''">menuUrl=#{menuUrl},</if>
+		 <if test="perms!=null and perms.trim()!=''">perms=#{perms},</if>
+		 <if test="orderNo!=null">orderNo=#{orderNo},</if>
+		 <if test="enable!=null and enable.trim()!=''">enable=#{enable},</if>
+		 <if test="icon!=null and icon.trim()!=''">icon=#{icon},</if>
+		 <choose>
+             <when test="parent != null">
+                parent=#{parent},
+             </when>
+             <otherwise>
+               parent=null,
+             </otherwise>
+          </choose>
+		</set>
+		 where id=#{id}
+	</update>
+	
+	<delete id="deleteMenuById">
+	  delete from sys_menu where id=#{id}
+	</delete>
+	
+	<delete id="deleteRoleMenuById">
+	  delete from sys_role_menu where menu=#{menuId}
+	</delete>
+</mapper>

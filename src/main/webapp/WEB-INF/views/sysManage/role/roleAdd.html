@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>角色添加</title>
+<#include "include/include.html">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/style/css/menuRole.css?ver=${ver}" />
+<@ztree/>
+<@validate/>
+<script type="text/javascript"
+	src="${contextPath}/script/validate/roleAddValidate.js"></script>
+</head>
+<body>
+	<form id="roleAddForm">
+		<div class="scroll-view">
+			<ul class="ztree scroll-content" id="ztree">
+				<script type="text/javascript">
+			     var setting = {
+					check: {
+						enable: true,
+		                chkStyle: "checkbox",
+		                chkboxType: { "Y": "ps", "N": "s" }
+					},
+					data: {
+						simpleData: {
+							enable: true
+						}
+					}};  
+					$.fn.zTree.init($("#ztree"),setting, ${mtree});
+				</script>
+			</ul>
+		</div>
+		<div class="layui-form layui-form-pane rTreeContent">
+			<div class="layui-form-item">
+				<label class="layui-form-label">角色名称</label>
+				<div class="layui-input-block">
+					<input type="text" name="name" autocomplete="off"
+						placeholder="输入角色名称" class="layui-input" />
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label class="layui-form-label">备注</label>
+				<div class="layui-input-block">
+					<textarea placeholder='输入备注' name="remark"
+						class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button type="button" class="layui-btn" id="roleAddSubmit">提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

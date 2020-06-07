@@ -1,0 +1,17 @@
+input.error{
+	border:1px dotted red;
+}
+label.error {
+	color:red;
+	font-weight:600;
+	font-size:12px;
+	background: url(../images/validate/unchecked.gif) no-repeat 8px 0px;
+	padding-left: 24px;
+	height: 14px;
+	line-height: 14px;
+        z-index: 10;
+        white-space: nowrap;
+}
+label.checked {
+  background:url(../images/validate/checked.gif) no-repeat 0px 0px;
+}

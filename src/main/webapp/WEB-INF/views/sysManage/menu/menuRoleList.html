@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<table class="layui-table table-contextmenu" lay-skin="row" lay-even>
+	<thead>
+		<tr>
+			<th>角色名称</th>
+			<th>备注</th>
+		</tr>
+	</thead>
+	<tbody>
+		<#list list as item>
+			<tr>
+				<td>${item.name}</td>
+				<td>${item.remark}</td>
+			</tr>
+		</#list>
+	</tbody>
+</table>
+<#assign pagecontain='pagecontainDialog'>
+<#assign pageFun='getDialogPager'>
+<#include "include/simplePager.html">
+</html>

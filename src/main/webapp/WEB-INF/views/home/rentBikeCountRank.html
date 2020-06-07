@@ -1,0 +1,54 @@
+<div class="rank">
+	<div class="data">
+		<div class="layui-card-header">上月进车排名</div>
+		<div class="layui-card-body ">
+			<table class="layui-table" lay-skin="line">
+                  <thead>
+                    <tr>
+                      <th>姓名</th>
+                      <th>进车次数</th>
+                      <th>排名</th>
+                    </tr> 
+                  </thead>
+                  <tbody class="rankTb">
+                    <tr>
+                      <td>--</td>
+                      <td>--</td>
+                      <td><span class="layui-badge" style="background-color: #f54545;">--</span></td>
+                    </tr>
+                    <tr>
+                      <td>--</td>
+                      <td>--</td>
+                      <td><span class="layui-badge" style="background-color: #ff8547;">--</span></td>
+                    </tr>
+                    <tr>
+                      <td>--</td>
+                      <td>--</td>
+                      <td><span class="layui-badge" style="background-color: #ffac38;">--</span></td>
+                    </tr>
+                    <tr>
+                      <td>--</td>
+                      <td>--</td>
+                      <td><span class="layui-badge" style="background-color: #8eb9f5;">--</span></td>
+                    </tr>
+                    <tr>
+                      <td>--</td>
+                      <td>--</td>
+                      <td><span class="layui-badge" style="background-color: #8eb9f5;">--</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+var data={"status":0,"data":[{"name":"周文艺","rentNum":123,"rank":1},{"name":"刘运志","rentNum":110,"rank":2},{"name":"郭上文","rentNum":105,"rank":3},{"name":"谢小俊","rentNum":103,"rank":4},{"name":"吴立志","rentNum":100,"rank":5}]};
+ if(data.status===0){
+	 $.each(data.data,function(i,d){
+		var td=$(".rankTb tr:eq("+i+") td");
+		td.eq(0).text(d.name);
+		td.eq(1).text(d.rentNum);
+		td.eq(2).children().text(d.rank);
+     });
+ }
+</script>

@@ -1,0 +1,76 @@
+<div class="shortcut">
+   <div class="data">
+	<div class="layui-card-header">快捷方式</div>
+	<div class="layui-card-body ">
+		<ul class="layui-row">
+			<li class="layui-col-xs3">
+			    <div 
+				   <@shiro.hasPermission name="sys:business:userQuery">
+				    class="addTab"
+				   </@shiro.hasPermission>
+					href="${contextPath}/admin/business/businessUserQuery"
+					tab-title='<i class="iconfont">&#xe65e;</i>办理查询'>
+					<i class="iconfont">&#xe65e;</i> <cite>办理查询</cite>
+				</div></li>
+			<li class="layui-col-xs3">
+				<div 
+				   <@shiro.hasPermission name="sys:userCar:list">
+				    class="addTab"
+				   </@shiro.hasPermission>
+					href="${contextPath}/admin/userCar/userCarList"
+					tab-title='<i class="iconfont">&#xe600;</i>用户车辆'>
+					<i class="iconfont">&#xe600;</i> <cite>用户车辆</cite>
+				</div></li>
+			<li class="layui-col-xs3">
+				<div 
+				   <@shiro.hasPermission name="sys:carRecord:list">
+				    class="addTab"
+				   </@shiro.hasPermission>
+					href="${contextPath}/admin/carRecord/carRecordList"
+					tab-title='<i class="iconfont">&#xe61a;</i>车进出记录'>
+					<i class="iconfont">&#xe61a;</i> <cite>车进出记录</cite>
+				</div></li>
+			<li class="layui-col-xs3">
+				<div 
+				   <@shiro.hasPermission name="sys:gate:list">
+				    class="addTab"
+				   </@shiro.hasPermission>
+					href="${contextPath}/admin/gate/gateList"
+					tab-title='<i class="iconfont">&#xe610;</i>大门信息'>
+					<i class="iconfont">&#xe610;</i> <cite>大门信息</cite>
+				</div></li>
+			<li class="layui-col-xs3">
+				<div 
+				   <@shiro.hasPermission name="sys:lane:list">
+				    class="addTab"
+				   </@shiro.hasPermission>
+					href="${contextPath}/admin/lane/laneList"
+					tab-title='<i class="iconfont">&#xe830;</i>车道信息'>
+					<i class="iconfont">&#xe830;</i> <cite>车道信息</cite>
+				</div></li>
+			<li class="layui-col-xs3">
+				<div 
+				   <@shiro.hasPermission name="sys:parkType:list">
+				    class="addTab"
+				   </@shiro.hasPermission>
+					href="${contextPath}/admin/parkType/parkTypeList"
+					tab-title='<i class="iconfont">&#xe6c7;</i>停放类型'>
+					<i class="iconfont">&#xe6c7;</i> <cite>停放类型</cite>
+				</div></li>
+			<li class="layui-col-xs3">
+				<div>
+					<i class="iconfont">&#xe601;</i> <cite>常用功能</cite>
+				</div></li>
+			<li class="layui-col-xs3">
+				<div>
+					<i class="iconfont">&#xe601;</i> <cite>常用功能</cite>
+				</div></li>
+		</ul>
+	</div>
+	</div>
+</div>
+<script type="text/javascript">
+	if(typeof top.addTab === "function"){
+	    top.addTab($('.addTab'));
+	}
+</script>

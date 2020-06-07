@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>登录记录</title>
+<script type="text/javascript">
+	$(function() {
+		getDialogPager(1);
+		placeholder();
+	})
+	function getDialogPager(pager) {
+		sysManage_admin_loginRecordList(pager)
+	}
+</script>
+</head>
+<body>
+	<form id="dialogQueryForm" style="margin:15px;">
+		<div class="topinput">
+			<div class="layui-form layui-form-pane">
+				<div class="layui-form-item datechoose">
+					<label class="layui-form-label">登录时间</label>
+					<div class="layui-input-inline">
+						<input class="layui-input" placeholder="开始时间"
+							name="dateMap[s_loginTime]" type="text" id="1_d1"
+							onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'1_d2\')||\'%y-%M-%d\'}'})">
+					</div>
+					<div class="layui-input-inline">
+						<input class="layui-input" placeholder="结束时间"
+							name="dateMap[e_loginTime]" type="text" id="1_d2"
+							onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d',minDate:'#F{$dp.$D(\'1_d1\')}'})">
+					</div>
+				</div>
+				<div class="layui-form-item">
+				   <div class="layui-btn" onclick="getDialogPager(1);">
+					   <i class ="iconfont iconfont_btn">&#xe654;</i>查询
+				   </div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<input type="hidden" name="adminId" value="${adminId}"> <input
+			type="hidden" name="order" value="0" /> <input type="hidden"
+			name="field" value="loginTime" />
+		<div id="dialogMainList" class="layui-form"></div>
+	</form>
+</body>
+</html>

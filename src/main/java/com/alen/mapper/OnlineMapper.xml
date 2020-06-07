@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alen.mapper.OnlineMapper">
+	<select id="getOnlineBySessionId" resultType="com.alen.entity.Online">
+		select id,adminId,adminName,adminUserName,sex,phone,loginTime,sessionId,ip
+		from ic_online where sessionId=#{sessionId} limit 1
+	</select>
+	
+	<delete id="deleteOnlineById">
+		delete from ic_online where id=#{id}
+	</delete>
+	
+	<insert id="saveOnline">
+		insert into
+		ic_online(id,adminId,adminName,adminUserName,sex,phone,loginTime,sessionId,ip)
+		values(SEQUENCE_ONLINE_ID.nextval,#{adminId},#{adminName},#{adminUserName},#{sex},#{phone},#{loginTime},#{sessionId},#{ip})
+	</insert>
+	
+	<delete id="deleteByIds">
+		delete from ic_online where id in
+		<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<select id="getOnlineList" resultType="com.alen.entity.Online">
+		select id,adminName,adminUserName,sex,phone,loginTime,ip from ic_online
+		<where>
+			<if test="online.adminName!=null and online.adminName.trim()!=''">adminName=#{online.adminName}</if>
+			<if test="online.adminUserName!=null and online.adminUserName.trim()!=''"> and adminUserName=#{online.adminUserName}</if>
+			<if test="online.sex!=null and online.sex.trim()!=''">and sex=#{online.sex}</if>
+			<if test="online.phone!=null and online.phone.trim()!=''">and phone=#{online.phone}</if>
+			<if test="dateMap.s_loginTime!=null">and loginTime&gt;=#{dateMap.s_loginTime}</if>
+			<if test="dateMap.e_loginTime!=null">and loginTime&lt;=#{dateMap.e_loginTime}</if>
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+<title>后台管理中心系统登录</title>
+<link rel="icon" href="${contextPath}/style/images/common/favicon.ico"/>
+<link type="text/css" rel="stylesheet" href="${contextPath}/style/css/login_3.css" />
+<script type="text/javascript" src="${contextPath}/script/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="${contextPath}/script/common/placeholder.js"></script>
+<script type="text/javascript" src="${contextPath}/script/module/login.js"></script>
+<script type="text/javascript" src="${contextPath}/script/common/jsencrypt.js"></script>
+</head>
+<body>
+<div class="kit-login">
+	<div class="kit-login-bg"></div>
+	<div class="kit-login-wapper">
+		<h2 class="kit-login-slogan">欢迎使用 <br> 天狗商城后台管理系统</h2>
+		<div class="kit-login-form">
+			<h4 class="kit-login-title">登录</h4>
+			<form class="layui-form">
+				<div class="kit-login-row">
+					<div class="kit-login-col">
+						<i class="layui-icon">&#xe612;</i>
+						<span class="kit-login-input">
+							<input type="text" id="username" placeholder="账号" value="" autocomplete="off" />
+						</span>
+					</div>
+					<div class="kit-login-col"></div>
+				</div>
+				<div class="kit-login-row">
+					<div class="kit-login-col">
+						<i class="layui-icon">&#xe64c;</i>
+						<span class="kit-login-input">
+							<input type="password" id="password" placeholder="密码" value=""  autocomplete="off" />
+						</span>
+					</div>
+					<div class="kit-login-col"></div>
+				</div>
+				<div class="kit-login-row">
+					<div class="kit-login-col">
+						<img src="${contextPath}/style/images/login/checked.png" />
+						<input type="text" id="checkCode" value="" placeholder="验证码" maxlength="4" />
+					</div>
+					<div>
+						<img src="${contextPath}/randomCode" id="code" alt="验证码"
+							 onclick="reload(this);" />
+					</div>
+				</div>
+				<div class="kit-login-row">
+					<input type="button" value="登录" class="layui-btn kit-login-btn" id="loginBtn" onclick="login(this);"/>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

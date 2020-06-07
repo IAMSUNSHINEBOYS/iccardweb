@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<table class="layui-table table-contextmenu" lay-skin="row" lay-even>
+	<thead>
+		<tr>
+			<@shiro.hasPermission name="sys:admin:delete">
+				<th class="firsttd"><input type="checkbox"
+					lay-filter="allChoose" lay-skin="primary" /></th>
+			</@shiro.hasPermission>
+			<th>登录名</th>
+			<th>姓名</th>
+			<th data-order="ad.sex">性别</th>
+			<th>电话号码</th>
+			<th data-order="ad.createTime">创建时间</th>
+			<th>最后登录IP</th>
+			<th data-order="ad.lastTime">最后登录时间</th>
+			<th>角色</th>
+			<th data-order="ad.valid">启用</th>
+		</tr>
+	</thead>
+	<tbody>
+		<#list list as item>
+			<tr>
+				<@shiro.hasPermission name="sys:admin:delete">
+					<td class="firsttd"><input type="checkbox" value="${item.id}"
+						data-ignore lay-skin="primary" lay-filter="singleChoose"
+						name="ids">
+					</td>
+				</@shiro.hasPermission>
+				<td>${item.username}</td>
+				<td>${item.name}</td>
+				<td>${item.sex}</td>
+				<td>${item.phone}</td>
+				<td>${item.createTime?datetime}
+				</td>
+				<td>${item.lastIp}</td>
+				<td>${(item.lastTime?string("yyyy-MM-dd HH:mm:ss"))!}
+				</td>
+				<td>
+				   <#assign roles=item.roles>
+                   <#if (roles?size)!<=1>
+						${roles[0]}
+				   <#else>
+						<div class="flex-div">
+							<div class="flex-top">
+								${roles[0]}<i class="iconfont">&#xe604;</i>
+							</div>
+							<div class="flex-content">
+							    <#list roles[1..] as role>
+									<p>${role}</p>
+								</#list>
+							</div>
+						</div>
+					</#if>
+				</td>
+				<td>${item.validStr}
+					<div class="tabletip">
+					   <@shiro.hasPermission name="sys:admin:detail">
+							<p onclick="sysManage_admin_detail(${item.id});">
+								<i class="iconfont">&#xe6ae;</i>详情
+							</p>
+						</@shiro.hasPermission>
+						<@shiro.hasPermission name="sys:admin:update">
+							<p onclick="sysManage_admin_updateInput(${item.id});">
+								<i class="iconfont">&#xe62a;</i>修改
+							</p>
+						</@shiro.hasPermission>
+						<@shiro.hasPermission name="sys:admin:update">
+							<p onclick="sysManage_admin_delete(${item.id});">
+								<i class="iconfont">&#xe676;</i>删除
+							</p>
+						</@shiro.hasPermission>
+						<@shiro.hasPermission name="sys:admin:pswReset">
+							<p onclick="sysManage_admin_pswReset(${item.id});">
+								<i class="iconfont">&#xe651;</i>密码重置
+							</p>
+						</@shiro.hasPermission>
+						<@shiro.hasPermission name="sys:admin:loginRecordList">
+							<p onclick="sysManage_admin_loginRecord(${item.id},'${item.name}');">
+								<i class="iconfont">&#xe602;</i>登录记录
+							</p>
+						</@shiro.hasPermission>
+							<@shiro.hasPermission name="sys:admin:perms">
+							<p onclick="sysManage_admin_perms(${item.id});">
+								<i class="iconfont">&#xe79d;</i>权限详情
+							</p>
+						</@shiro.hasPermission>
+					</div>
+				</td>
+			</tr>
+		</#list>
+	</tbody>
+</table>
+<#include "include/include.html">
+<@listBottom/>
+<script type="text/javascript">
+	layui.use('form', function() {
+		var form = layui.form;
+		form.on('radio(adminValid)', function(data) {
+			getPager(1);
+		});
+	});
+</script>

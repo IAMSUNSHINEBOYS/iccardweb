@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>个人资料</title>
+<#include "include/include.html">
+<@validate/>
+<script type="text/javascript"
+	src="${contextPath}/script/validate/infoUpdateValidate.js"></script>
+</head>
+<body>
+	<form id="infoUpdateForm" class="layui-form layui-form-pane"
+		style="margin:10px;">
+		<div class="layui-form-item">
+			<label class="layui-form-label">姓名</label>
+			<div class="layui-input-block">
+				<input type="text" name="name" value="${admin.name}" disabled
+					class="layui-input layui-disabled" />
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">登录名</label>
+			<div class="layui-input-block">
+				<input type="text" value="${admin.username}" disabled
+					class="layui-input layui-disabled" />
+			</div>
+		</div>
+		<div class="layui-form-item" pane>
+			<label class="layui-form-label">性别</label>
+			<div class="layui-input-block">
+				<div id="sex">
+					<input type="radio" name="sex" lay-filter="sex" title="男" 
+						value="男" <#if admin.sex=='男'>checked</#if>> <input
+						type="radio" name="sex" lay-filter="sex" title="女" value="女"
+						<#if admin.sex=='女'>checked</#if>>
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">电话号码</label>
+			<div class="layui-input-block">
+				<input type="text" name="phone" value="${admin.phone}"
+					autocomplete="off" placeholder="输入电话号码" class="layui-input" />
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">创建时间</label>
+			<div class="layui-input-block">
+				<input type="text"
+					value='${admin.createTime?datetime}'
+					disabled class="layui-input layui-disabled" />
+
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button type="button" class="layui-btn" id="personInfoSubmit">提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+</body>
+<@layuiRender/>
+<script type="text/javascript">
+	layui.use('form', function() {
+		var form = layui.form;
+		form.on('radio(sex)', function(data) {
+			$(data.elem).valid();
+		});
+	});
+</script>
+</html>

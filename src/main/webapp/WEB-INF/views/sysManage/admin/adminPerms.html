@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>权限详情</title>
+<#include "include/include.html">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/style/css/menuRole.css?ver=${ver}" />
+<@ztree/>
+</head>
+<body>
+	<ul class="ztree" id="ztree">
+		<script type="text/javascript">
+		     var setting = {
+				data: {
+					simpleData: {
+						enable: true
+					}
+				}}; 
+				$.fn.zTree.init($("#ztree"),setting, ${mtree});
+		</script>
+	</ul>
+</body>
+</html>

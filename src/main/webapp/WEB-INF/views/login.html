@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+<title>后台管理中心系统登录</title>
+<link rel="icon" href="${contextPath}/style/images/common/favicon.ico"/>
+<link type="text/css" rel="stylesheet" href="${contextPath}/style/css/login.css" />
+<script type="text/javascript" src="${contextPath}/script/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="${contextPath}/script/common/placeholder.js"></script>
+<script type="text/javascript" src="${contextPath}/script/module/login.js"></script>
+<script type="text/javascript" src="${contextPath}/script/common/jsencrypt.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div class="top">后台管理系统中心</div>
+		<div class="content">
+			<div>
+				<div id="login">
+					<div id="tip"></div>
+					<form method="post" id="loginForm">
+						<p class="topname">登 录</p>
+						<div>
+							<img src="${contextPath}/style/images/login/user.png" /> <input
+								type="text" id="username" placeholder="账号" value="" autocomplete="off"/>
+						</div>
+						<div>
+							<img src="${contextPath}/style/images/login/password.png" /> <input
+								type="password" id="password" placeholder="密码" value=""  autocomplete="off"/>
+						</div>
+						<div class="checkcode">
+							<span> 
+							   <img src="${contextPath}/style/images/login/checked.png" /> 
+							   <input type="text" id="checkCode" value="" placeholder="验证码" maxlength="4" /> 
+							</span> 
+							<div>
+							   <img src="${contextPath}/randomCode" id="code" alt="验证码"
+								onclick="reload(this);" />
+							</div>
+						</div>
+						<p id="loginsubmit">
+							<input type="button" value="登录" id="loginBtn"
+								onclick="login(this);" />
+						</p>
+						<input type="hidden" value="${publicKey}" id="publicKey"/>
+						<input type="hidden" value="${token}" id="token"/>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+.detail .title_td {
+	width: 75px;
+}
+.riding .title_td {
+	width: 62px;
+}
+.unlock {
+	background-color: #0DA5C9;
+}
+.changeCard {
+	background-color: #F2D32E;
+}
+.userUpdate {
+	background-color: #93E379;
+}
+.reversal {
+	background-color: #76B70F;
+}
+.unbind {
+	background-color: #E5A2D1;
+}
+.backRentalFee {
+	background-color: #A79564;
+}
+.operaterDiv {
+	float: right;
+	width: 120px;
+	height: 38px;
+	margin-right: 40px;
+}
+.operater {
+	height: 38px;
+	line-height: 38px;
+	padding: 0;
+	vertical-align: middle;
+	background-color: #f2f2f2;
+}
+.layui-nav-mored {
+	border-bottom-color: #c2c2c2 !important;
+}
+.operaterA {
+	color: #333 !important;
+	line-height: 38px;
+	font-size: 15px;
+}
+.userRemark {
+    position: absolute;
+    right: -11px;
+    top: 25px;
+    display: none;
+    width: 320px;
+    height: 150px;
+    overflow: auto;
+    border: 1px solid #e6e6e6;
+    background-color: #fff;
+    margin: 10px;
+    z-index:100;
+}
+.userRemark_t {
+    padding: 8px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 200;
+    width: 100%;
+    min-height: 20px;
+    line-height: 20px;
+    text-indent: 8px;
+}
+.userRemark_td {
+	cursor: pointer;
+	padding: 0 !important;
+}
+#handleForm .layui-btn {
+	width: 85px;
+    font-size: 15px;
+    padding: 0 5px;
+}
+#handleForm .layui-elem-quote {
+	padding: 10px 30px;
+	height: 38px;
+	margin-bottom: 6px;
+}

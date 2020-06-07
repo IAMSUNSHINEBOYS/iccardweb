@@ -1,0 +1,144 @@
+<#assign ver="1.00">
+
+<#macro iconfont>
+<link rel="stylesheet" type="text/css" href="${contextPath}/iconfont/iconfont.css?ver=${ver}" />
+</#macro>
+
+<#macro layui>
+<link rel="stylesheet" type="text/css" href="${contextPath}/layui/css/layui.css?ver=${ver}" />
+<@layuiBottom/>
+</#macro>
+
+<#macro layuiTop>
+<link rel="stylesheet" type="text/css" href="${contextPath}/layui/css/layui.css?ver=${ver}" />
+<@common/>
+<@iconfont/>
+</#macro>
+
+<#macro layuiBottom>
+<script type="text/javascript" src="${contextPath}/layui/layui.js?ver=${ver}"></script>
+<script type="text/javascript">
+var contextPath='${contextPath}';
+layui.config({
+	dir : '${contextPath}/layui/',
+	version : '2.4.3'
+});
+</script>
+<@placeholder/>
+</#macro>
+
+<#macro placeholder>
+<script type="text/javascript" src="${contextPath}/script/common/placeholder.js?ver=${ver}"></script>
+<script type="text/javascript">
+layui.use('form', function() {
+	placeholder();
+});
+</script>
+</#macro>
+
+<#macro common>
+<link rel="stylesheet" type="text/css" href="${contextPath}/style/css/common.css?ver=${ver}"/>
+<script type="text/javascript" src="${contextPath}/script/jquery/jquery-1.10.2.js?ver=${ver}"></script>
+<script type="text/javascript" src="${contextPath}/script/common/common.js?ver=${ver}"></script>
+</#macro>
+
+<#macro service>
+<script type="text/javascript" src="${contextPath}/script/module/service.js?ver=${ver}"></script>
+</#macro>
+
+<#macro query>
+<script type="text/javascript" src="${contextPath}/script/module/query.js?ver=${ver}"></script>
+</#macro>
+
+<#macro operation>
+<script type="text/javascript" src="${contextPath}/script/module/operation.js?ver=${ver}"></script>
+</#macro>
+
+<#macro sysManage>
+<script type="text/javascript" src="${contextPath}/script/module/sysManage.js?ver=${ver}"></script>
+</#macro>
+
+<#macro listTop>
+<@layuiTop/>
+<link rel="stylesheet" type="text/css" href="${contextPath}/style/css/main.css?ver=${ver}" />
+<@listStyle/>
+</#macro>
+
+<#macro listStyle>
+<link rel="stylesheet" type="text/css" href="${contextPath}/style/css/list.css?ver=${ver}" />
+</#macro>
+
+<#macro wdate>
+<script type="text/javascript" src="${contextPath}/datePicker/WdatePicker.js?ver=${ver}"></script>
+</#macro>
+
+<#macro listBottom>
+<#include "include/pager.html">
+<@layuiRender/>
+</#macro>
+
+<#macro layuiRender>
+<script type="text/javascript">
+layui.use('form', function() {
+  layui.form.render();
+});
+$(".layer-select").parent().css('overflow','visible');
+</script>
+<@placeholder/>
+</#macro>
+
+<#macro ztree>
+<link type="text/css" rel="stylesheet" href="${contextPath}/style/css/ztree.css?ver=${ver}" />
+<script type="text/javascript" src="${contextPath}/script/jquery/jquery.ztree.js?ver=${ver}"></script>
+</#macro>
+
+<#macro validate>
+<link type="text/css" rel="stylesheet" href="${contextPath}/style/css/validate.css?ver=${ver}" />
+<script type="text/javascript" src="${contextPath}/script/jquery/jquery.validate.js?ver=${ver}"></script>
+<script type="text/javascript" src="${contextPath}/script/common/validate.js?ver=${ver}"></script>
+</#macro>
+
+<#macro fileupload>
+<link type="text/css" rel="stylesheet" href="${contextPath}/style/css/jquery/jquery.fileupload.css?ver=${ver}" />
+<script type="text/javascript" src="${contextPath}/script/jquery/jquery.ajaxfileupload.js?ver=${ver}"></script>
+</#macro>
+
+<#macro autocomplete>
+<link type="text/css" rel="stylesheet" href="${contextPath}/style/css/jquery/jquery.autocomplete.css?ver=${ver}" />
+<script type="text/javascript" src="${contextPath}/script/jquery/jquery.autocomplete.js?ver=${ver}"></script>
+</#macro>
+
+<#macro echarts>
+<script type="text/javascript" src="${contextPath}/script/echarts/echarts.js?ver=${ver}"></script>
+<script type="text/javascript" src="${contextPath}/script/echarts/macarons.js?ver=${ver}"></script>
+</#macro>
+
+<#macro searchableSelect>
+<link type="text/css" rel="stylesheet" href="${contextPath}/style/css/jquery/jquery.searchableSelect.css?ver=${ver}" />
+<script type="text/javascript" src="${contextPath}/script/jquery/jquery.searchableSelect.js?ver=${ver}"></script>
+</#macro>
+
+<#macro formSelects>
+<link type="text/css" rel="stylesheet" href="${contextPath}/style/css/formSelects.css?ver=${ver}" />
+<script type="text/javascript" src="${contextPath}/script/common/formSelects.js?ver=${ver}"></script>
+</#macro>
+
+<#macro tips>
+<link type="text/css" rel="stylesheet" href="${contextPath}/style/css/tips.css?ver=${ver}" />
+<script type="text/javascript" src="${contextPath}/script/common/tips.js?ver=${ver}"></script>
+</#macro>
+
+<#macro listTable>
+<@util/>
+<script type="text/javascript" src="${contextPath}/script/common/list.js?ver=${ver}"></script>
+<!--[if lte IE 8]>
+ <script type="text/javascript">
+	$(".layui-table tbody tr:odd").addClass("tr-odd");
+	$(".layui-table thead tr").addClass("tr-odd");
+  </script>
+<![endif]-->
+</#macro>
+
+<#macro util>
+<script type="text/javascript" src="${contextPath}/script/common/util.js?ver=${ver}"></script>
+</#macro>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<table class="layui-table table-contextmenu" lay-skin="row" lay-even>
+	<thead>
+		<tr>
+			<th>登陆名</th>
+			<th>姓名</th>
+			<th>最后登陆时间</th>
+		</tr>
+	</thead>
+	<tbody>
+		<#list list as item>
+			<tr>
+				<td>${item.username}</td>
+				<td>${item.name}</td>
+			    <td>${(item.lastTime?string("yyyy-MM-dd HH:mm:ss"))!}</td>
+			</tr>
+		</#list>
+	</tbody>
+</table>
+<#assign pagecontain='pagecontainDialog'>
+<#assign pageFun='getDialogPager'>
+<#include "include/simplePager.html">
+</html>

@@ -1,0 +1,39 @@
+<#include "include/include.html">
+<@listTable/>
+<div class="left-page">
+	第<span>${pager.currentPage}</span>页/共<span>${pager.totalPage}</span>页
+</div>
+<div class="left-page">
+	共<span>${pager.totalSize}</span>条
+</div>
+<div id="${pagecontain???string(pagecontain,'pagecontain')}"></div>
+<script type="text/javascript">
+	var list='${mainList???string(mainList,'mainList')}';
+	var form='${queryForm???string(queryForm,'queryForm')}';
+    function pager(page,fun){
+	    if((fun=eval(fun)) && $.isFunction(fun)){
+	   		fun(page);
+	   	}else{
+	   		getPager(page)
+	   	}
+    }
+    order(list, form, function() {
+   	    pager(1,'${pageFun}');
+    });
+	layui.use('laypage', function() {
+		var laypage = layui.laypage;
+		laypage.render({
+			elem : '${pagecontain???string(pagecontain,'pagecontain')}',
+			count : '${pager.totalSize}', //数据总数
+			curr : '${pager.currentPage}',//当前页
+			limit: '${pager.pageSize}',
+			layout : [ 'prev', 'next' ],
+			jump : function(obj, first) {
+				if (!first) {
+					var curr = obj.curr;
+					pager(curr,'${pageFun}');
+				}
+			}
+		});
+	});
+</script>

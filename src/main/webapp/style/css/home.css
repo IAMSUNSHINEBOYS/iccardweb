@@ -1,0 +1,207 @@
+html {
+    background-color: #f2f2f2;
+    color: #666;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+.layui-fluid {
+    padding: 10px;
+    margin: 0;
+    height: 100%;
+}
+.addTab i:hover{
+    background-color: #f2f2f2!important;
+    color: #888!important;
+}
+.shortcut,.currfault,.business{
+    width:33.3%;
+    float: left;
+}
+.shortcut li .iconfont {
+    display: inline-block;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    border-radius: 2px;
+    font-size: 30px;
+    background-color: #F8F8F8;
+    color: #333;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+}
+.shortcut li cite {
+    position: relative;
+    top: 2px;
+    display: block;
+    color: #666;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 14px;
+    font-style: normal
+}
+.shortcut li {
+    text-align: center;
+}
+.shortcut .layui-col-xs3{
+   width:25%;
+}
+.shortcut .layui-col-xs3 .addTab{
+   cursor: pointer;
+}
+.shortcut .layui-col-xs3 div{
+    margin:5px;
+}
+.numberNone{
+     height: 242px;
+}
+.useBike{
+    float: left;
+}
+.data{
+    margin: 0 5px;
+    background-color: #fff;
+}
+.currfault .layui-col-xs3,.business .layui-col-xs3{
+   width:50%;
+}
+.currfault .layui-col-xs3 div,.business .businessCounts{
+    background-color: #F8F8F8;
+    margin: 5px;
+    padding: 10px;
+    height: 64px;
+}
+.currfault h3,.business h3 {
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+.currfault p cite,.business p cite {
+    font-style: normal;
+    font-size: 30px;
+    font-weight: 300;
+    color: #009688;
+}
+.currfault .layui-col-xs3 div:hover,.business .businessCounts:hover{
+    background-color: #f2f2f2;
+    color: #888;
+}
+.numberTwo{
+     margin-top:10px;
+     height: 335px;
+}
+.useBike{
+    width: 65%;
+    float: left;
+}
+.offline{
+	width: 35%;
+    float: left;
+}
+.rank .layui-table table{
+    margin:0!important;
+}
+.rank .layui-table td,.rank .layui-table th{
+    padding: 9px 15px;
+}
+.numberThree{
+     margin-top:10px;
+     height: 200px;
+}
+.monitor .layui-progress h3 {
+    position: absolute;
+    right: 0;
+    top: -35px;
+    color: #999;
+    font-size: 14px;
+}
+.monitor .layui-progress-text {
+    top: -35px;
+    line-height: 26px;
+    font-size: 26px;
+    white-space: nowrap;
+}
+.monitor .layui-progress {
+    margin: 52px 0;
+}
+.monitor .layui-progress-bar {
+    text-align: left;
+}
+.monitor-takerates {
+    padding-top: 5px;
+}
+.monitor-takerates .layui-progress.last-child {
+    margin-bottom: 20px;
+}
+.rank .layui-card-body {
+	padding: 3px 9px;
+}
+.layui-card-header{
+	height: 32px;
+    line-height: 32px;
+}
+.offline .layui-card-body {
+	padding: 5px 9px;
+}
+.offline .layui-table td,.offline .layui-table th{
+	padding: 7px;
+}
+.rank .layui-table td,.rank .layui-table th {
+	padding: 6px;
+}
+.monitor .layui-progress-bar,.monitor .layui-progress{
+	height: 10px;
+}
+.monitor,.rank{
+    width:40%;
+    float: left;
+}
+.task{
+    width:20%;
+    float: left;
+}
+.task .data{
+     height: 248px;
+}
+.task .layui-col-xs3{
+   width:100%;
+}
+.task .layui-col-xs3 div{
+    background-color: #F8F8F8;
+    margin: 5px;
+    padding: 10px 15px;
+    height: 67px;
+}
+.task h3 {
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+.task p cite {
+    font-style: normal;
+    font-size: 30px;
+    font-weight: 300;
+    color: #009688;
+}
+.task .layui-col-xs3 div:hover{
+    background-color: #f2f2f2;
+    color: #888;
+}
+.tab-refresh{
+    float:right;
+    cursor: pointer;
+}
+.offline .flow-default {
+    max-height:282px;
+    overflow: auto;
+    margin-right:5px;
+}
+.offline .data {
+    height:333px;
+}
+.offline .layui-badge {
+    padding: 0 3px;
+    height: 16px;
+    line-height: 16px;
+    margin-right:2px;
+}

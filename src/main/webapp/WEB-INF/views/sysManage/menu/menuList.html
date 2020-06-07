@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>功能菜单</title>
+<#include "include/include.html">
+<@layuiTop/>
+<@sysManage/>
+<@ztree/>
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/style/css/menuRole.css?ver=${ver}"/>
+</head>
+<body>
+	<form id="menuForm">
+		<div class="scroll-view" style="top:-8px;">
+			<ul class="ztree scroll-content" id="ztree">
+				<script type="text/javascript">
+			     var setting = {
+					callback:{
+						onClick:function(event, treeId, treeNode){
+							<#if hasPer>
+							 sysManage_menu_put(treeNode)
+							</#if>
+						},
+						onRightClick: function(e,treeId, treeNode){
+							var node=treeNode.getPath();
+							var path='';
+							if(node.length>0){
+								$.each(node,function(index,data){
+									path+='<i class="iconfont m">&#xe604;</i>'+data.name;
+								})
+							}
+							$('.rMenu').remove();
+							if (treeNode && !treeNode.noR) {
+								var rMenu=$('<div class="rMenu"><div>');
+								$('<p><i class="iconfont">&#xe635;</i>用户</p>').on('click',function(){
+									sysManage_menu_menuAdminInfo(treeNode.id,path);
+								}).appendTo(rMenu);
+								$('<p><i class="iconfont">&#xe79d;</i>角色</p>').on('click',function(){
+									sysManage_menu_menuRoleInfo(treeNode.id,path);
+								}).appendTo(rMenu);
+						        var $width = rMenu.css('width');
+						        rMenu.appendTo($(".scroll-view"));
+						        if (document.documentElement.clientWidth - e.clientX < parseInt($width) + 30) {
+						        	rMenu.css({
+						                left : e.clientX + 8 - parseInt($width),
+						                top : e.clientY
+						            })
+						        } else {
+						        	rMenu.css({
+						                left : e.clientX - 8,
+						                top : e.clientY
+						            })
+						        }
+								$(document).on("click", function(){
+									rMenu.hide();
+								});
+							}
+						}
+					},
+					data: {
+						simpleData: {
+							enable: true,
+							rootPId: 0
+						}
+					}}; 
+				   $.fn.zTree.init($("#ztree"),setting, ${mtree});
+				</script>
+			</ul>
+		</div>
+		<#if hasPer>
+		<div style="padding-top:5px;float:left;width:500px;margin-left:380px;"
+			class="layui-form layui-form-pane">
+			<div class="layui-form-item">
+				<label class="layui-form-label">上级菜单</label>
+				<div class="layui-input-block">
+					<select name="parent">
+						<option value="0">根目录</option> <#list list as item>
+						<option value="${item.id}">${item.nameStr}</option> </#list>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">菜单名称</label>
+				<div class="layui-input-block">
+					<input type="text" name="name" autocomplete="off"
+						placeholder="输入菜单名称" class="layui-input" />
+				</div>
+			</div>
+			<div class="layui-form-item" pane>
+				<label class="layui-form-label">菜单类型</label>
+				<div class="layui-input-block">
+					<input type="radio" name="menuType" value="1" title="一级菜单"
+						lay-filter="menuType"> <input type="radio" name="menuType"
+						value="2" title="二级菜单" lay-filter="menuType"> <input
+						type="radio" name="menuType" value="0" title="按钮"
+						lay-filter="menuType" checked>
+				</div>
+			</div>
+			<div class="layui-form-item" style="display:none;" id="menuUrl">
+				<label class="layui-form-label">菜单URL</label>
+				<div class="layui-input-block">
+					<input type="text" name="menuUrl" autocomplete="off"
+						placeholder="输入菜单URL" class="layui-input" />
+				</div>
+			</div>
+			<div class="layui-form-item" style="display:none;" id="icon">
+				<label class="layui-form-label">菜单ICON</label>
+				<div class="layui-input-block">
+					<input type="text" name="icon" autocomplete="off"
+						placeholder="输入菜单ICON" class="layui-input" />
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text" id="perms">
+				<label class="layui-form-label">授权标识</label>
+				<div class="layui-input-block">
+					<textarea placeholder='输入授权标识多个使用逗号" , "隔开' name="perms"
+						class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+			    <div class="layui-inline" style="margin-right:2px;">
+			      <label class="layui-form-label" style="width:100px;">排序</label>
+			      <div class="layui-input-inline" style="width:110px;">
+			        <input type="text" autocomplete="off" name="orderNo"
+						onkeyup="this.value=this.value.replace(/\D/, '');"
+						placeholder="输入数字" class="layui-input" />
+			      </div>
+			    </div>
+			    <div class="layui-inline inline-radio">
+			      <label class="layui-form-label" style="width:100px;">状态</label>
+			      <div class="layui-input-inline">
+			         <input type="radio" name="enable" value="1" title="启用" checked>
+			         <input type="radio" name="enable" value="0" title="禁用">
+			      </div>
+			    </div>
+			</div>			
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<@shiro.hasPermission name="sys:menu:add">
+					<button type="button" class="layui-btn"
+						onclick="sysManage_menu_add();" id="menuAdd">添加</button>
+					</@shiro.hasPermission> 
+					<@shiro.hasPermission name="sys:menu:update">
+					<button type="button" class="layui-btn layui-btn-warm"
+						onclick="sysManage_menu_update()" id="menuUpdate">修改</button>
+					</@shiro.hasPermission> 
+					<@shiro.hasPermission name="sys:menu:delete">
+					<button type="button" class="layui-btn layui-btn-danger"
+						onclick="sysManage_menu_delete()" id="menuDelete">删除</button>
+					</@shiro.hasPermission>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+			<input type="hidden" name="id" />
+		</div>
+		</#if>
+	</form>
+</body>
+<@layuiBottom/>
+<script type="text/javascript">
+	layui.use('form', function() {
+		var form = layui.form;
+		form.on('radio(menuType)', function(data) {
+			sysManage_menu_menuChange(data.value)
+		});
+	});
+</script>
+</html>

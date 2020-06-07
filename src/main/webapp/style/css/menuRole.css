@@ -1,0 +1,69 @@
+.scroll-view {
+	position: absolute;
+	left: 30px;
+	width: 340px;
+	overflow: hidden;
+	padding-bottom: 1px;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.scroll-content {
+	width: 360px;
+	height: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	box-sizing: border-box;
+}
+
+#roleAddForm form, #moduleForm form {
+	height: 100%;
+}
+
+.rTreeContent {
+	padding-top: 15px;
+	width: 500px;
+	margin-left: 380px;
+}
+
+.rMenu p:hover {
+	color: #DE0000;
+	background-color: #ddd;
+}
+
+.rMenu {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	border: 1px solid #bbb;
+	border-radius: 2px;
+	background-color: #fff;
+	z-index: 2000;
+	color: #333;
+	padding: 4px 0;
+	min-width: 80px;
+}
+
+.rMenu p {
+	padding: 5px 10px;
+	font-size: 14px;
+	line-height: 24px;
+	cursor: pointer;
+}
+
+.rMenu p i {
+	margin-right: 6px;
+}
+
+.inline-radio .layui-form-radio {
+	margin: 5px 0 0 10px !important;
+	padding-right: 2px;
+}
+.inline-radio .layui-input-inline {
+	width: 150px;
+	border: 1px solid #e6e6e6;
+	border-left: 0px;
+	height: 36px;
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!-- 配置字段为空 -->
+		<setting name="jdbcTypeForNull" value="NULL"/>
+		<!-- 打印查询语句 -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
+	<plugins>
+		<!-- 分页插件 -->
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
+			<!--分页参数合理化 -->
+			<property name="reasonable" value="false" />
+		</plugin>
+	</plugins>
+</configuration>
+

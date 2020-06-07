@@ -1,0 +1,63 @@
+<div class="useBike">
+   <div class="data">
+	<div class="layui-card-header">最近10天进出</div>
+	<div class="layui-card-body">
+	   <div id="container" style="width:100%;height:281px"></div>
+	</div>
+<script type="text/javascript">
+ var data={"status":0,"dataTime":["2019-03-06","2019-03-07","2019-03-08","2019-03-09","2019-03-10","2019-03-11","2019-03-12","2019-03-13","2019-03-14","2019-03-15"],"rentCounts":[12712,18967,5842,11496,19071,22082,23230,19772,21027,22976],"returnCounts":[12848,18848,6067,11621,19062,21983,23162,19729,20763,22734]};
+ if(data.status===0){
+	  var chart = echarts.init(document.getElementById('container'),'macarons');
+	  var option = {
+		 		 tooltip: {
+		              trigger: "axis",
+		              axisPointer: {           
+		              type : 'shadow'
+		              }
+		          },
+		          color: ['#7CB5EC','#434348'],
+		          legend: {
+		         	 data: ["进车量", "出车量"],
+		         	 y: 'top'
+		          },
+		          grid: {
+		         	 x: '60',
+		         	 x2: '25',
+		         	 y: '35px',
+			         y2: '30px'
+		          },
+		          calculable : true,
+		          xAxis: [{
+		              type: "category",
+		              axisLabel: {
+		                  color: '#333'
+		              },
+		              data: data.dataTime
+		          }],
+		          yAxis: [{
+		              type: "value",
+		              axisLabel: {
+		                  color: '#333'
+		              },
+		              name: "数量"
+		          }],
+		          series: [{
+		              name: "进车量",
+		              type: "bar",
+		              barCategoryGap: '50%',
+		              data: data.rentCounts
+		          },{
+		              name: "出车量",
+		              type: "bar",
+		              barCategoryGap: '50%',
+		              data: data.returnCounts
+		          }]
+		  };
+	  chart.setOption(option);
+	  windowResize(function(){
+	     chart.resize();
+	  });
+ }
+</script>
+</div>
+</div>

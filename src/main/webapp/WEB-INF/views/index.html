@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>后台管理系统中心</title>
+<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<#include "include/include.html">
+<@layuiTop/>
+<link rel="stylesheet" type="text/css" href="${contextPath}/style/css/common.css?ver=${ver}" />
+<link rel="stylesheet" type="text/css" href="${contextPath}/style/css/index.css?ver=${ver}" />
+<script type="text/javascript" src="${contextPath}/script/jquery/jquery-1.10.2.js?ver=${ver}"></script>
+<script type="text/javascript" src="${contextPath}/script/common/placeholder.js?ver=${ver}"></script>
+<script type="text/javascript" src="${contextPath}/script/common/common.js?ver=${ver}"></script>
+<script type="text/javascript" src="${contextPath}/script/module/person.js?ver=${ver}"></script>
+<script type="text/javascript" src="${contextPath}/script/common/jsencrypt.js"></script>
+</head>
+<body>
+	<div class="top_header">
+		<div class="logo">后台管理系统中心</div>
+		<div class="layout-left">
+		  <div class="flexible" title="侧边伸缩">
+              <i class="layui-icon layui-icon-shrink-right"></i>
+          </div>
+		</div>
+		<div class="weather" onclick="weather();">
+		     <span class="w1"></span>
+		     <span class="w2">
+		         <i class="w3"></i>
+		         <i class="w4"></i>
+             </span>
+		</div>
+		<ul class="layui-nav top-menu">
+			<li class="layui-nav-item nav-current "><a href="javascript:;"><img
+					id="heasImg" src="${contextPath}/heads/${operator.headImgPath}" />${operator.name}</a>
+				<dl class="layui-nav-child">
+					<@shiro.hasPermission name="sys:person:infoUpdate">
+						<dd>
+							<a href="javascript:person_infoUpdateInput();"><i
+								class="iconfont">&#xe647;</i>个人资料</a>
+						</dd>
+					</@shiro.hasPermission>
+					<@shiro.hasPermission name="sys:person:pswUpdate">
+						<dd>
+							<a href="javascript:person_pswUpdateInput();"><i
+								class="iconfont">&#xe621;</i>修改密码</a>
+						</dd>
+					</@shiro.hasPermission>
+					<@shiro.hasPermission name="sys:person:headImgUpdate">
+						<dd>
+							<a href="javascript:person_headImgUpdate();"><i
+								class="iconfont">&#xe719;</i>修改头像</a>
+						</dd>
+					</@shiro.hasPermission>
+					<dd>
+						<a href="${contextPath}/logout"> <i class="iconfont">&#xe683;</i>退出系统</a>
+					</dd>
+				</dl>
+			</li>
+		</ul>
+	</div>
+	<div class="left_menu">
+		<ul class="layui-nav layui-nav-tree side-sroll" lay-shrink="all" lay-filter="menu">
+		<@shiro.hasPermission name="sys:index:home">
+			<li class="layui-nav-item sys_home">
+			   <a href="${contextPath}/admin/home" class="addTab"> 
+			     <i class="iconfont">&#xe646;</i>后台首页</a>
+			</li>
+		</@shiro.hasPermission>
+		<#list list as p>
+			<li class="layui-nav-item">
+			    <a href="javascript:;"><i class="iconfont">${p.icon}</i>${p.name}</a>
+				<dl class="layui-nav-child">
+				   <#list p.childMenus as c>
+						<dd>
+							<a href="${contextPath}${c.menuUrl}" class="addTab">
+							<i class="iconfont">${c.icon}</i><span>${c.name}</span></a>
+						</dd>
+				    </#list>
+				</dl>
+			</li>
+		</#list>
+		</ul>
+	</div>
+	<div class="right_body">
+		<div class="layui-tab layui-tab-brief" lay-filter="main-tab" lay-allowclose="true">
+			<ul class="layui-tab-title">
+		     <@shiro.hasPermission name="sys:index:home">
+			   <li lay-id="${contextPath}/admin/home">
+			     <i class="iconfont">&#xe646;</i>后台首页
+			   </li>
+			 </@shiro.hasPermission>
+			</ul>
+			<div class="layui-tab-content">
+			   <@shiro.hasPermission name="sys:index:home">
+			    <div class="layui-tab-item layui-show">
+			      <iframe src="${contextPath}/admin/home" class="iframe-tab"></iframe>
+			    </div>
+			   </@shiro.hasPermission>
+			</div>
+		</div>
+		<!--定义一个div用来遮住ie8下的iframe的文档边框-->
+		<!--[if lte IE 8]>
+			<div id="ietiptop">
+			</div>
+			<div id="ietipleft">
+			</div>
+		<![endif]-->
+	</div>
+	<div class="site-mobile"></div>
+	<div class="site-mobile-shade"></div>
+</body>
+<@layuiBottom/>
+<script type="text/javascript" src="${contextPath}/script/module/index.js?ver=${ver}"></script>
+</html>

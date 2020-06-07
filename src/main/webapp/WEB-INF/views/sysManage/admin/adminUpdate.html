@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>修改系统用户</title>
+<#include "include/include.html">
+<@validate/>
+<script type="text/javascript"
+	src="${contextPath}/script/validate/adminUpdateValidate.js"></script>
+</head>
+<body>
+	<form id="adminUpdateForm" class="layui-form layui-form-pane"
+		style="margin:10px;">
+		<div style="width:47%;float:left;margin-right:10px">
+			<div class="layui-form-item">
+				<label class="layui-form-label">登录名</label>
+				<div class="layui-input-block">
+					<input type="text" name="username" value="${admin.username}"
+						autocomplete="off" placeholder="输入登录名" class="layui-input" />
+
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">姓名</label>
+				<div class="layui-input-block">
+					<input type="text" name="name" value="${admin.name}"
+						autocomplete="off" placeholder="输入姓名" class="layui-input" />
+
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">电话号码</label>
+				<div class="layui-input-block">
+					<input type="text" name="phone" value="${admin.phone}"
+						autocomplete="off" placeholder="输入电话号码" class="layui-input" />
+
+				</div>
+			</div>
+			<div class="layui-form-item" pane>
+				<label class="layui-form-label">性 别</label>
+				<div class="layui-input-block">
+					<div id="sex">
+						<input type="radio" name="sex" title="男" lay-filter="sex"
+							value="男" <#if admin.sex=='男'>checked</#if>><input
+							type="radio" name="sex" title="女" lay-filter="sex"
+							value="女" <#if admin.sex=='女'>checked</#if>>
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item" pane>
+				<label class="layui-form-label">启 用</label>
+				<div class="layui-input-block">
+					<div id="valid">
+						<input type="radio" name="valid" title="是"
+							lay-filter="valid" value="1"
+							<#if admin.valid=='1'>checked</#if>><input
+							type="radio" name="valid" title="否" lay-filter="valid"
+							value="0" <#if admin.valid=='0'>checked</#if>>
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button type="button" class="layui-btn" id="adminUpdateSubmit">提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+		</div>
+		<fieldset class="layui-elem-field field">
+			<legend>角色</legend>
+			<div class="layui-field-box fieldset-box">
+				<#list list as item>
+					<div class="layui-input-inline" style="min-width:130px;">
+						<input type="checkbox" name="role" lay-skin="primary"
+							lay-filter="roles" value="${item.id}" title="${item.name}"
+							<#list admin.roles as role>
+							   <#if item.name==role>checked</#if>
+							</#list>>
+					</div>
+				</#list>
+			</div>
+		</fieldset>
+		<input type="hidden" name="id" value="${admin.id}" />
+	</form>
+</body>
+<@layuiRender/>
+<script type="text/javascript">
+	layui.use('form', function() {
+		var form = layui.form;
+		form.on('radio(sex)', function(data) {
+			$(data.elem).valid();
+		});
+		form.on('radio(valid)', function(data) {
+			$(data.elem).valid();
+		});
+		form.on('checkbox(roles)', function(data) {
+			$(data.elem).valid();
+		});
+	});
+</script>
+</html>
