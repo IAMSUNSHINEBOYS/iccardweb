@@ -38,7 +38,7 @@
     <jedis.version>2.9.0</jedis.version>
     <ehcache-core.version>2.4.3</ehcache-core.version>
     <json-lib.version>2.4</json-lib.version>
-    <jackson.version>2.9.8</jackson.version>
+    <jackson.version>2.11.0</jackson.version>
     <spring.data.version>1.10.7.RELEASE</spring.data.version>
     <mongodb-driver.version>3.3.0</mongodb-driver.version>
   </properties>
