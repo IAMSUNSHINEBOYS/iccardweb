@@ -182,7 +182,7 @@ var layer = {
 
 var Class = function(setings){  
   var that = this;
-  that.index =(typeof top.layerIndex!=='undefined')?(++top.layerIndex):++layer.index;// 自定义
+  that.index = ++layer.index;
   that.config = $.extend({}, that.config, ready.config, setings);
   document.body ? that.creat() : setTimeout(function(){
     that.creat();
@@ -208,7 +208,7 @@ Class.pt.config = {
   time: 0, //0表示不自动关闭
   zIndex: 19891014, 
   maxWidth: 360,
-  anim: -1,
+  anim: 0,
   isOutAnim: true,
   icon: -1,
   moveType: 1,
@@ -319,12 +319,12 @@ Class.pt.creat = function(){
         }
       }();
     }() : body.append(html[1]);
-    if($('.layui-layer-move')[0])// 自定义
-        ready.moveElem=$('.layui-layer-move')
-    else
-        body.append(ready.moveElem = moveElem)
-    that.layero = $('#'+ doms[0] + times);
-    config.scrollbar || doms.html.css('overflow', 'hidden').attr('layer-full', times);
+      if($('.layui-layer-move')[0])// 自定义
+          ready.moveElem=$('.layui-layer-move')
+      else
+          body.append(ready.moveElem = moveElem)
+      that.layero = $('#'+ doms[0] + times);
+      config.scrollbar || doms.html.css('overflow', 'hidden').attr('layer-full', times);
   }).auto(times);
   
   //遮罩
@@ -755,12 +755,12 @@ ready.rescollbar = function(index){
 };
 
 layer.rescollbar = function(index){ // 自定义
-  var layero = $('#'+ doms[0] + index);
-  $(layero).children(".layui-layer-title").addClass("layui-layer-title-full");
-  $(layero).children(".layui-layer-setwin").addClass("layui-layer-setwin-full");
-  if(!doms.html.attr('layer-full')){
-    doms.html.css('overflow','hidden').attr('layer-full', index);
-  }
+    var layero = $('#'+ doms[0] + index);
+    $(layero).children(".layui-layer-title").addClass("layui-layer-title-full");
+    $(layero).children(".layui-layer-setwin").addClass("layui-layer-setwin-full");
+    if(!doms.html.attr('layer-full')){
+        doms.html.css('overflow','hidden').attr('layer-full', index);
+    }
 };
 
 /** 内置成员 */
@@ -1080,7 +1080,7 @@ layer.photos = function(options, loop, key){
   var dict = {};
   options = options || {};
   if(!options.photos) return;
-  var type = !(options.photos.constructor === String);//自定义
+  var type = options.photos.constructor === Object;
   var photos = type ? options.photos : {}, data = photos.data || [];
   var start = photos.start || 0;
   dict.imgIndex = (start|0) + 1;
@@ -1176,12 +1176,12 @@ layer.photos = function(options, loop, key){
   
   //一些动作
   dict.event = function(){
-  	if('imgsee' in options ? options.imgsee : true){ //自定义
-	    dict.bigimg.hover(function(){
-	      dict.imgsee.show();
-	    }, function(){
-	      dict.imgsee.hide();
-	    });
+    if('imgsee' in options ? options.imgsee : true) { //自定义
+        dict.bigimg.hover(function () {
+            dict.imgsee.show();
+        }, function () {
+            dict.imgsee.hide();
+        });
     }
     dict.bigimg.find('.layui-layer-imgprev').on('click', function(event){
       event.preventDefault();
@@ -1213,7 +1213,7 @@ layer.photos = function(options, loop, key){
     };  
   };
   
-  dict.loadi = layer.load('loadi' in options ? options.loadi : 2, {//自定义
+  dict.loadi = layer.load(1, {
     shade: 'shade' in options ? false : 0.9,
     scrollbar: false
   });

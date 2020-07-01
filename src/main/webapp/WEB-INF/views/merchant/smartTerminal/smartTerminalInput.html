@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>商户信息</title>
+<#include "include/include.html">
+<!--<link rel="stylesheet" type="text/css"
+	  href="${contextPath}/style/css/menuRole.css?ver=${ver}" />-->
+<style>
+	.table{overflow-y: scroll;}
+
+
+	/*.table thead tr {
+		display:block;
+
+	}
+	.table tbody {
+		display: block;
+		height: 500px;
+		overflow: auto;
+	}
+	.table th {
+		width:20%;
+	}
+	.table td {
+		width:20%;
+	}*/
+
+	body{overflow-y: scroll;}
+	.layui-table-body{overflow-x: hidden;}
+
+
+
+</style>
+<@merchant/>
+<@listTop/>
+<@wdate/>
+<@ztree/>
+<script type="text/javascript" src="${contextPath}/script/jquery/jquery.ztree.exhide.min.js"></script>
+<script type="text/javascript" src="${contextPath}/script/jquery/jquery.fuzzysearch.js"></script>
+<script type="text/javascript">
+	$(function() {
+		getPager(1);
+	})
+	var ztree = null;
+	function getPager(pager) {
+        merchant_smartTerminal_list(pager)
+	}
+	
+	//展开
+	function  expandAll() {
+        ztree.expandAll(true);
+    }
+
+    //折叠
+    function  collapseAll() {
+        ztree.expandAll(false);
+    }
+</script>
+</head>
+<body>
+
+	<div class="layui-fluid">
+		<div class="layui-row">
+			<#include "merchant/smartTerminal/smartTerminalZtree.html">
+			<#include "merchant/smartTerminal/smartTerminalQuery.html">
+		</div>
+	</div>
+</body>
+<@layuiBottom/>
+</html>

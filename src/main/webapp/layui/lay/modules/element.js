@@ -197,6 +197,26 @@ layui.define('jquery', function(exports){
       }
     }
     
+    //点击一级菜单
+    /*
+    ,clickThis: function(){
+      var othis = $(this), parents = othis.parents(NAV_ELEM)
+      ,filter = parents.attr('lay-filter')
+      ,elemA = othis.find('a')
+      ,unselect = typeof othis.attr('lay-unselect') === 'string';
+
+      if(othis.find('.'+NAV_CHILD)[0]) return;
+      
+      if(!(elemA.attr('href') !== 'javascript:;' && elemA.attr('target') === '_blank') && !unselect){
+        parents.find('.'+THIS).removeClass(THIS);
+        othis.addClass(THIS);
+      }
+      
+      layui.event.call(this, MOD_NAME, 'nav('+ filter +')', othis);
+    }
+    )
+    */
+    
     //点击菜单 - a标签触发
     ,clickThis: function(){
       var othis = $(this)
@@ -228,6 +248,17 @@ layui.define('jquery', function(exports){
       
       layui.event.call(this, MOD_NAME, 'nav('+ filter +')', othis);
     }
+    
+    //点击子菜单选中
+    /*
+    ,clickChild: function(){
+      var othis = $(this), parents = othis.parents(NAV_ELEM)
+      ,filter = parents.attr('lay-filter');
+      parents.find('.'+THIS).removeClass(THIS);
+      othis.addClass(THIS);
+      layui.event.call(this, MOD_NAME, 'nav('+ filter +')', othis);
+    }
+    */
     
     //折叠面板
     ,collapse: function(){

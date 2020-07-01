@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>设备信息</title>
+<#include "include/include.html">
+
+<!--<script type="text/javascript"
+	src="${contextPath}/script/validate/smartTerminalAddValidate.js"></script>-->
+<link rel="stylesheet" type="text/css"
+	  href="${contextPath}/style/css/ztreeM.css?ver=${ver}" />
+<!--<link rel="stylesheet" type="text/css"
+  href="${contextPath}/style/css/zTreeStyle.css?ver=${ver}" />-->
+<script>
+
+    function onClick(e, treeId, treeNode) {
+        $('#txtTreeSelect').val(treeNode.name);
+    }
+
+    function showMenu() {
+        var cityObj = $('#txtTreeSelect');
+        var cityOffset = cityObj.offset();
+        var top = cityObj.outerHeight();
+        var left = cityOffset.left-10;
+        //$("#menuContent").css({ left: cityOffset.left + "px", top: cityOffset.top + cityObj.outerHeight(true) + "px" }).slideDown("fast");
+        $("#menuContent").css({ left: left + "px", top: top + "px" }).slideDown("fast");
+        //$("#menuContent").css({ left:  "115px", top: "45px" }).slideDown("fast");
+        $("body").bind("mousedown", onBodyDown);
+    }
+
+    function hideMenu() {
+        $("#menuContent").fadeOut("fast");
+        $("body").unbind("mousedown", onBodyDown);
+    }
+    function onBodyDown(event) {
+        if (!(event.target.id == "menuBtn" || event.target.id == "menuContent" || $(event.target).parents("#menuContent").length > 0)) {
+            hideMenu();
+        }
+    }
+
+    function getFilePath(treeObj) {
+        if (treeObj == null) return "";
+        var filename = treeObj.name;
+        var pNode = treeObj.getParentNode();
+        if (pNode != null) {
+            filename = getFilePath(pNode) + "\\" + filename;
+        }
+        return filename;
+    }
+</script>
+<@validate/>
+<@ztree/>
+</head>
+<body>
+	<form id="smartTerminalAddForm" class="layui-form layui-form-pane"
+		style="margin:11px;">
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">管理组织</label>
+						<div class="layui-input-block">
+							<input type="text" id="txtTreeSelect" onclick="showMenu(); return false;" name="name" placeholder="请选择商户组织" autocomplete="off" class="layui-input"   readonly />
+						</div>
+					</div>
+					<div id="menuContent" class="menuContent" style="display: none; position: absolute; z-index:9999;">
+						<ul id="ztreeM" class="ztree" style="margin-top: 0; width: 350px; height:500px;">
+							<script type="text/javascript">
+                                var setting = {
+                                    data: {
+                                        simpleData: {
+                                            enable: true
+                                        }
+                                    },
+                                    callback :{
+                                        /*onClick:function(event, treeId, treeNode){
+                                            //通过子类查询父类
+                                            console.log(getFilePath(treeNode));
+                                        },*/
+                                        onDblClick: function(event, treeId, treeNode){
+                                            //通过子类查询父类
+                                            console.log(getFilePath(treeNode));
+                                            $('#smartTerminalAddForm input[name=name]').val(getFilePath(treeNode));
+                                            hideMenu();
+                                        }
+                                    }
+                                };
+
+                               $.fn.zTree.init($("#ztreeM"),setting, ${mztree});
+							</script>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+			<div class="layui-row" >
+				<div class="layui-row layui-col-space15">
+					<div class="layui-col-xs6 layui-col-md6">
+						<div class="layui-col-md12">
+							<div class="layui-card">
+								<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+									<legend>设备属性</legend>
+									<div class="layui-card-body">
+										<div class="layui-form-item">
+											<label class="layui-form-label">机型</label>
+											<div class="layui-input-block">
+												<select name="interest" lay-filter="aihao">
+													<option value="0">收费机</option>
+													<option value="1">增值机</option>
+													<option value="2">读写器</option>
+													<option value="3">电控计费器</option>
+													<option value="4">ZK门禁控制器</option>
+													<option value="5">安卓人脸收费机</option>
+													<option value="6">水控计量计费器</option>
+													<option value="7">水控计时计费器</option>
+													<option value="8">NB水控计费器</option>
+													<option value="9">ZK人脸考勤机</option>
+												</select>
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<div class="layui-inline">
+												<label class="layui-form-label">ID号(十六进制)</label>
+												<div class="layui-input-inline">
+													<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+
+										</div>
+										<div class="layui-form-item">
+											<div class="layui-inline">
+												<label class="layui-form-label">注册号(十六进制)</label>
+												<div class="layui-input-inline">
+													<input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<div class="layui-inline">
+												<label class="layui-form-label">PSAM卡号</label>
+												<div class="layui-input-inline">
+													<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<div class="layui-inline">
+												<label class="layui-form-label">程序版本号</label>
+												<div class="layui-input-inline">
+													<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<div class="layui-inline">
+												<label class="layui-form-label">程序版本号</label>
+												<div class="layui-input-inline">
+													<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<div class="layui-inline">
+												<div class="layui-input-inline">
+													<label class="layui-form-label">端口总数</label>
+													<div class="layui-input-block">
+														<select name="interest">
+															<option value="0">0</option>
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+						<div class="layui-col-md12">
+							<div class="layui-card">
+								<!--<div class="layui-card-header">
+									<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+										<legend>状态属性</legend>
+									</fieldset>
+								</div>-->
+								<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+									<legend>状态属性</legend>
+									<div class="layui-card-body">
+										<div class="layui-form-item">
+											<div class="layui-inline">
+												<div class="layui-input-inline">
+													<label class="layui-form-label">设备状态</label>
+													<div class="layui-input-block">
+														<select name="interest">
+															<option value="0">正常</option>
+															<option value="1">未注册</option>
+															<option value="2">未授权</option>
+															<option value="3">停用</option>
+															<option value="4">注销</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<div class="layui-inline">
+												<label class="layui-form-label">设置日期</label>
+												<div class="layui-input-inline">
+													<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<div class="layui-inline">
+												<label class="layui-form-label">银联终端号</label>
+												<div class="layui-input-inline">
+													<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+					</div>
+					<div class="layui-col-xs6 layui-col-md6">
+						<div class="layui-col-xs6 layui-col-md6">
+							<div class="layui-col-md12">
+								<div class="layui-card">
+									<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+										<legend>位置属性</legend>
+										<div class="layui-card-body">
+											<div class="layui-form-item">
+												<label class="layui-form-label">配线架位号</label>
+												<div class="layui-input-block">
+													<input type="text" name="identity" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">安装位置(本机)</label>
+												<div class="layui-input-block">
+													<input type="text" name="identity" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input">
+												</div>
+											</div>
+											<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+												<legend>
+													<input type="checkbox" name="like[read]" title="安装位置(上级)" checked>
+												</legend>
+												<div class="layui-form-item">
+													<label class="layui-form-label">上级设备ID</label>
+													<div class="layui-input-block">
+														<input type="text" name="identity" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input">
+													</div>
+												</div>
+												<div class="layui-form-item">
+													<label class="layui-form-label">端口号</label>
+													<div class="layui-input-block">
+														<input type="text" name="identity" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input">
+													</div>
+												</div>
+											</fieldset>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+							<div class="layui-col-md12">
+								<div class="layui-card">
+									<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+										<legend>通讯属性(本机)</legend>
+										<div class="layui-card-body">
+											<div class="layui-form-item">
+												<label class="layui-form-label">模式</label>
+												<div class="layui-input-block">
+													<select name="interest">
+														<option value="0">串口</option>
+														<option value="1" selected="">Modem拨号</option>
+														<option value="2">TCP/IP Server</option>
+													</select>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<div class="layui-inline">
+													<label class="layui-form-label">ip地址</label>
+													<div class="layui-input-block" style="width: 100px;">
+														<input type="text" name="price_min" autocomplete="off" class="layui-input">
+													</div>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">波特率</label>
+												<div class="layui-input-block">
+													<select name="interest" lay-filter="aihao">
+														<option value=""></option>
+														<option value="19200" selected="">19200</option>
+													</select>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">端口号</label>
+												<div class="layui-input-block">
+													<select name="interest" class="layui-select" lay-search>
+														<option value="10001">10001</option>
+														<option value="4370">写作</option>
+														<option value="4001">4001</option>
+														<option value="4002">4002</option>
+														<option value="4003">4003</option>
+														<option value="4004">4004</option>
+													</select>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">方式</label>
+												<div class="layui-input-block">
+													<select name="interest">
+														<option value="1">设备是主动方</option>
+														<option value="2">设备是被动方</option>
+													</select>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">是否联网</label>
+												<div class="layui-input-block">
+													<select name="interest">
+														<option value="1">是</option>
+														<option value="2">否</option>
+													</select>
+												</div>
+											</div>
+											<div class="layui-form-item">
+												<label class="layui-form-label">是否联机交易</label>
+												<div class="layui-input-block">
+													<select name="interest">
+														<option value="1">是</option>
+														<option value="2">否</option>
+													</select>
+												</div>
+											</div>
+
+											<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+												<legend>通讯网络形式</legend>
+												<div class="layui-form-item" pane>
+													<div class="layui-input-block">
+														<input type="radio" name="sex" value="0" title="0-直连">
+														<input type="radio" name="sex" value="1" title="1-总线">
+														<input type="radio" name="sex" value="2" title="2-星型">
+													</div>
+												</div>
+											</fieldset>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+<@layuiRender/>
+<script type="text/javascript">
+	layui.use('form', function() {
+		var form = layui.form;
+
+	});
+</script>
+</html>

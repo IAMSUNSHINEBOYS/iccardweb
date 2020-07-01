@@ -1,0 +1,60 @@
+<div class="layui-col-xs9">
+	<form id="queryForm">
+		<div id="tiptop">
+			<@shiro.hasPermission name="sys:smartTerminal:add">
+				<p onclick="merchant_smartTerminal_addInput();">
+					<i class="iconfont">&#xe601;</i>添加
+				</p>
+			</@shiro.hasPermission>
+		</div>
+		<div class="topinput query-contextmenu">
+			<div class="layui-form layui-form-pane">
+				<div class="layui-form-item">
+					<label class="layui-form-label">商户组织代码</label>
+					<div class="layui-input-block">
+						<input type="text" name="smtMerchantId" placeholder="输入商户组织代码"
+							   autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">姓名</label>
+					<div class="layui-input-block">
+						<input type="text" name="name" placeholder="输入姓名"
+							   autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item" pane>
+					<label class="layui-form-label">状态</label>
+					<div class="layui-input-block">
+						<input type="radio" name="valid" title="是" value="1"
+							   lay-filter="adminValid" class="layui-radio-uncheck"> <input
+							type="radio" lay-filter="adminValid" name="valid" title="否"
+							value="0" class="layui-radio-uncheck">
+					</div>
+				</div>
+				<div class="layui-form-item datechoose">
+					<label class="layui-form-label">登录时间</label>
+					<div class="layui-input-inline">
+						<input class="layui-input" placeholder="开始时间"
+							   name="dateMap[s_lastTime]" type="text" id="d1"
+							   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'d2\')||\'%y-%M-%d\'}'})">
+					</div>
+					<div class="layui-input-inline">
+						<input class="layui-input" placeholder="结束时间"
+							   name="dateMap[e_lastTime]" type="text" id="d2"
+							   onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d',minDate:'#F{$dp.$D(\'d1\')}'})">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-btn" onclick="getPager(1);">
+						<i class ="iconfont iconfont_btn">&#xe654;</i>查询
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<input type="hidden" name="order" value="0" />
+		<input type="hidden" name="field" value="ad.lastTime" />
+		<div id="mainList" class="layui-form table" style="overflow:auto;height: 500px;"></div>
+	</form>
+</div>

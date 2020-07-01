@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>添加商户</title>
+<#include "include/include.html">
+<@validate/>
+<script type="text/javascript"
+	src="${contextPath}/script/validate/smartMerchantAddValidate.js"></script>
+</head>
+<body>
+	<form id="smartMerchantAddForm" class="layui-form layui-form-pane"
+		style="margin:11px;">
+		<div class="layui-form" style="width:47%;float:left;margin-right:10px">
+			<div class="layui-form-item">
+				<label class="layui-form-label">当前选择</label>
+				<div class="layui-input-block" style="width: 388px">
+					<input type="text" name="" autocomplete="off" value="${parentInfo}"
+						 class="layui-input layui-disabled" disabled readonly/>
+				</div>
+				<div class="layui-input-block">
+				</div>
+			</div>
+			<div class="layui-form-item" style="width: 500px">
+				<div class="layui-inline" style="width: 500px">
+					<label class="layui-form-label">组织名称</label>
+					<div class="layui-input-inline" style="width: 250px;">
+						<input type="text" name="smtMerchantName" autocomplete="off"
+							   class="layui-input"/>
+					</div>
+					<div class="layui-input-inline" style="width: 100px;">
+						<input type="checkbox" name="isChild" title="增加在下级">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item" style="width: 500px">
+				<div class="layui-input-block">
+					<button type="button" class="layui-btn layui-btn-normal" id="continueAddSubmit">继续增加</button>
+					<button type="button" class="layui-btn" id="smartMerchantAddSubmit">提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+			<input type="hidden" name="smtMerchantId" value="${smartMerchant.smtMerchantId}"/>
+		</div>
+	</form>
+</body>
+<@layuiRender/>
+<script type="text/javascript">
+	layui.use('form', function() {
+		var form = layui.form;
+
+	});
+</script>
+</html>

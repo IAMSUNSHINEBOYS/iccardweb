@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<table class="layui-table table-contextmenu" lay-skin="row" lay-even>
+	<thead>
+		<tr>
+			<th>使用单位ID</th>
+			<th>组织代码</th>
+			<th>父组织代码</th>
+			<th data-order="shs_MerchantName">组织名称</th>
+			<th>级别</th>
+			<th>是否最小级别</th>
+			<th>日志类型代码</th>
+			<th>日志编号</th>
+			<th>用户ID</th>
+			<th data-order="fd_shs_datetime">更改时间</th>
+		</tr>
+	</thead>
+	<tbody>
+		<#list list as item>
+			<tr>
+				<td>${item.smtUnitId}</td>
+				<td>${item.smtMerchantId}</td>
+				<td>${item.smtParentId}</td>
+				<td>${item.smtMerchantName}</td>
+				<td>${item.smtLevel}</td>
+				<td>${item.smtLeast}</td>
+				<td>${item.smtDailycode}</td>
+				<td>${item.smtDailyno}</td>
+				<td>${item.smtUserId}</td>
+				<td>${(item.shs_datetime?string("yyyy-MM-dd HH:mm:ss"))!}
+					<div class="tabletip">
+
+					</div>
+				</td>
+			</tr>
+		</#list>
+	</tbody>
+</table>
+<#include "include/include.html">
+<@listBottom/>
+<script type="text/javascript">
+	layui.use('form', function() {
+		var form = layui.form;
+		form.on('radio(adminValid)', function(data) {
+
+		});
+	});
+</script>

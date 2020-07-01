@@ -21,7 +21,8 @@
 var contextPath='${contextPath}';
 layui.config({
 	dir : '${contextPath}/layui/',
-	version : '2.4.3'
+    base : '${contextPath}/script/common/',
+	version : '2.5.5'
 });
 </script>
 <@placeholder/>
@@ -52,6 +53,10 @@ layui.use('form', function() {
 
 <#macro operation>
 <script type="text/javascript" src="${contextPath}/script/module/operation.js?ver=${ver}"></script>
+</#macro>
+
+<#macro merchant>
+<script type="text/javascript" src="${contextPath}/script/module/merchant.js?ver=${ver}"></script>
 </#macro>
 
 <#macro sysManage>

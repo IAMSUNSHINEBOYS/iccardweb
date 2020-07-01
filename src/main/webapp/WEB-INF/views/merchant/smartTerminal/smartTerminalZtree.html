@@ -1,0 +1,43 @@
+<div class="layui-col-xs3">
+	<div class="layui-card">
+		<div class="layui-card-body">
+			<div class="layui-inline">
+				<label class="layui-form-label w-auto"></label>
+				<div class="layui-input-inline mr0">
+					<input class="layui-input" id="edtSearch" type="text" placeholder="输入关键字"/>
+				</div>
+				<button id="searchBut" class="layui-btn icon-btn" >
+					<i class ="iconfont iconfont_btn">&#xe60e;</i>查询
+				</button>
+			</div>
+		</div>
+		<div class="layui-card-body">
+			<button type="button" onclick="expandAll()" class="layui-btn layui-btn-normal layui-btn-sm">展开</button>
+			<button type="button" onclick="collapseAll()" class="layui-btn layui-btn-warm layui-btn-sm">折叠</button>
+		</div>
+		<div class="layui-card-body mini-bar" style="height: 70vh;">
+			<div class="scroll-view" >
+				<ul class="ztree scroll-content" id="ztree" style="height: 70vh;">
+					<script type="text/javascript">
+                        var setting = {
+                            data: {
+                                simpleData: {
+                                    enable: true
+                                }
+                            },
+                            callback :{
+                                onClick:function(event, treeId, treeNode){
+                                	$('input[name="smtMerchantId"]').val(treeNode.id);
+                                    getPager(1);
+								}
+							}
+						};
+                        ztree = $.fn.zTree.init($("#ztree"),setting, ${mztree});
+                        fuzzySearch('ztree','#searchBut','#edtSearch',null,true); //初始化模糊搜索方法
+					</script>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>系统用户</title>
+<#include "include/include.html">
+<@merchant/>
+<@listTop/>
+<@wdate/>
+<script type="text/javascript">
+	$(function() {
+		getPager(1);
+	})
+	function getPager(pager) {
+		merchant_smartMerchant_list(pager)
+	}
+</script>
+</head>
+<body>
+	<form id="queryForm">
+		<div id="tiptop">
+			<@shiro.hasPermission name="sys:smartMerchant:add">
+				<p onclick="merchant_smartMerchant_addInput();">
+					<i class="iconfont">&#xe601;</i>添加
+				</p>
+			</@shiro.hasPermission>
+		</div>
+		<div class="topinput query-contextmenu">
+			<div class="layui-form layui-form-pane">
+				<div class="layui-form-item">
+					<label class="layui-form-label">组织名称</label>
+					<div class="layui-input-block">
+						<input type="text" name="smtMerchantName" placeholder="输入组织名称"
+							autocomplete="off" class="layui-input">
+					</div>
+				</div>
+
+				<div class="layui-form-item datechoose">
+					<label class="layui-form-label">变更时间</label>
+					<div class="layui-input-inline">
+						<input class="layui-input" placeholder="开始时间"
+							name="dateMap[s_lastTime]" type="text" id="d1"
+							onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'d2\')||\'%y-%M-%d\'}'})">
+					</div>
+					<div class="layui-input-inline">
+						<input class="layui-input" placeholder="结束时间"
+							name="dateMap[e_lastTime]" type="text" id="d2"
+							onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d',minDate:'#F{$dp.$D(\'d1\')}'})">
+					</div>
+				</div>
+				<div class="layui-form-item">
+				   <div class="layui-btn" onclick="getPager(1);">
+					   <i class ="iconfont iconfont_btn">&#xe654;</i>查询
+				   </div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<input type="hidden" name="order" value="0" /> <input type="hidden"
+			name="field" value="fd_shs_merchantame" />
+		<div id="mainList" class="layui-form"></div>
+	</form>
+</body>
+<@layuiBottom/>
+</html>

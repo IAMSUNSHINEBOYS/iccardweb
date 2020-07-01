@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<table class="layui-table table-contextmenu" lay-skin="row" lay-even>
+	<thead>
+		<tr>
+			<th>使用单位ID</th>
+			<th>授权号</th>
+			<th>机型代码</th>
+			<th>设备ID</th>
+			<th>注册号</th>
+			<th>机号</th>
+			<th>设备版本号</th>
+			<th>PASM卡号</th>
+			<th>分控器版本号</th>
+			<th>卡片类型</th>
+			<th>卡类</th>
+			<th>服务器端口总数</th>
+			<th>名单属性</th>
+			<th>上级设备的唯一码</th>
+			<th>服务器端口号</th>
+			<th>设备级数</th>
+			<th>级联参数</th>
+			<th>配线架位号</th>
+			<th>安装位置</th>
+			<th>管理组织代码</th>
+			<th>位置代码</th>
+			<th>设备状态</th>
+			<th data-order="shs_MerchantName">设备状态的设置时间</th>
+			<th>链路模式</th>
+			<th>通讯地址</th>
+			<th>通讯地址说明</th>
+			<th>通讯端口</th>
+			<th>波特率</th>
+			<th>数据通讯方式</th>
+			<th>是否在网</th>
+			<th>是否联机交易</th>
+			<th>站点IP地址</th>
+			<th>通信版本号</th>
+			<th>交易类型</th>
+			<th>登记时间</th>
+			<th>通讯网络形式</th>
+			<th>变更时间</th>
+		</tr>
+	</thead>
+	<tbody>
+		<#list list as item>
+			<tr>
+				<td>${item.smtUnitId}</td>
+				<td>${item.smtAuthNo}</td>
+				<td>${item.smtTerminalCode}</td>
+				<td>${item.smtTerminalId}</td>
+				<td>${item.smtRegNo}</td>
+				<td>${item.smtMachineNo}</td>
+				<td>${item.smtMachineVer}</td>
+				<td>${item.smtPsamcardNo}</td>
+				<td>${item.smtProgramVer}</td>
+				<td>${item.smtUseCard}</td>
+				<td>${item.smtClass}</td>
+				<td>${item.smtPortCount}</td>
+				<td>${item.smtListMark}</td>
+				<td>${item.smtParentId}</td>
+				<td>${item.smtPortNo}</td>
+				<td>${item.smtLevel}</td>
+				<td>${item.smtLevelArray}</td>
+				<td>${item.smtLineNo}</td>
+				<td class="show-more" style="max-width:140px;">${item.smtLocation}</td>
+				<td>${item.smtMerchantId}</td>
+				<td>${item.smtLocationId}</td>
+				<td>${item.smtStatus}</td>
+				<td style="min-width: 130px;">${item.smtChangeDate}</td>
+				<td>${item.smtComMode}</td>
+				<td>${item.smtIpAddr}</td>
+				<td class="show-more" style="max-width:140px;">${item.smtIpAddrdes}</td>
+				<td>${item.smtComPort}</td>
+				<td>${item.smtBaudrate}</td>
+				<td>${item.smtCollectWay}</td>
+				<td>${item.smtOnnet}</td>
+				<td>${item.smtOnline}</td>
+				<td>${item.smtStationIp}</td>
+				<td>${item.smtComVer}</td>
+				<td>${item.smtDealCode}</td>
+				<td style="min-width: 130px;">${(item.smtRegTime?string("yyyy-MM-dd HH:mm:ss"))!}</td>
+				<td>${item.smtLinkForm}</td>
+				<td style="min-width: 130px;">${(item.smtDateTime?string("yyyy-MM-dd HH:mm:ss"))!}
+					<div class="tabletip">
+
+					</div>
+				</td>
+			</tr>
+		</#list>
+	</tbody>
+</table>
+
+<#include "include/include.html">
+<@listBottom/>
+<script type="text/javascript">
+	layui.use('form', function() {
+		var form = layui.form;
+		form.on('radio(adminValid)', function(data) {
+
+		});
+	});
+</script>

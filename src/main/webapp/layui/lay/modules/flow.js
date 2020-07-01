@@ -20,7 +20,6 @@ layui.define('jquery', function(exports){
     options = options || {};
     
     var elem = $(options.elem); if(!elem[0]) return;
-    var moreElem=$(options.moreElem || options.elem)
     var scrollElem = $(options.scrollElem || document); //滚动条所在元素
     var mb = options.mb || 50; //与底部的临界距离
     var isAuto = 'isAuto' in options ? options.isAuto : true; //是否自动滚动加载
@@ -33,17 +32,14 @@ layui.define('jquery', function(exports){
     var ELEM_TEXT = '<cite>加载更多</cite>'
     ,more = $('<div class="layui-flow-more"><a href="javascript:;">'+ ELEM_TEXT +'</a></div>');
     
-    if(!moreElem.find('.layui-flow-more')[0]){
-       moreElem.append(more);
+    if(!elem.find('.layui-flow-more')[0]){
+      elem.append(more);
     }
     
     //加载下一个元素
     var next = function(html, over){ 
       html = $(html);
-      if(options.moreElem)
-        elem.append(html);
-      else
-        more.before(html);
+      more.before(html);
       over = over == 0 ? true : null;
       over ? more.html(end) : more.find('a').html(ELEM_TEXT);
       isOver = over;
