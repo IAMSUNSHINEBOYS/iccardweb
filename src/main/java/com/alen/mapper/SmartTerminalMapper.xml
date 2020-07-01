@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alen.mapper.SmartTerminalMapper">
+
+	<resultMap id="resultMap" type="com.alen.entity.SmartTerminal">
+		<result column="Fd_PFM_UnitID" property="smtUnitId"/>
+		<result column="Fd_SHS_AUTHNO" property="smtAuthNo"/>
+		<result column="Fd_SHS_TerminalCode" property="smtTerminalCode"/>
+		<result column="Fd_SHS_TerminalID" property="smtTerminalId"/>
+		<result column="Fd_SHS_RegNO" property="smtRegNo"/>
+		<result column="Fd_SHS_TerminalNo" property="smtMachineNo"/>
+		<result column="Fd_SHS_TerminalVer" property="smtMachineVer"/>
+		<result column="Fd_SHS_PSAMCARDNO" property="smtPsamcardNo"/>
+		<result column="Fd_SHS_PointsVER" property="smtProgramVer"/>
+		<result column="Fd_SHS_cardtype" property="smtUseCard"/>
+		<result column="Fd_SHS_Class" property="smtClass"/>
+		<result column="Fd_SHS_PortCount" property="smtPortCount"/>
+		<result column="Fd_SHS_ListMark" property="smtListMark"/>
+		<result column="Fd_SHS_ParentID" property="smtParentId"/>
+		<result column="Fd_SHS_PortNO" property="smtPortNo"/>
+		<result column="Fd_SHS_Level" property="smtLevel"/>
+		<result column="Fd_SHS_LevelArray" property="smtLevelArray"/>
+		<result column="Fd_SHS_LineNO" property="smtLineNo"/>
+		<result column="Fd_SHS_Location" property="smtLocation"/>
+		<result column="Fd_SHS_MerchantID" property="smtMerchantId"/>
+		<result column="Fd_SHS_LOCATIONID" property="smtLocationId"/>
+		<result column="Fd_SHS_STATUSCODE" property="smtStatus"/>
+		<result column="Fd_SHS_ChangeDate" property="smtChangeDate"/>
+		<result column="Fd_SHS_ComMode" property="smtComMode"/>
+		<result column="Fd_SHS_IPAddr" property="smtIpAddr"/>
+		<result column="Fd_SHS_IPAddrinfo" property="smtIpAddrdes"/>
+		<result column="Fd_SHS_ComPort" property="smtComPort"/>
+		<result column="Fd_SHS_Baudrate" property="smtBaudrate"/>
+		<result column="Fd_SHS_CollectWay" property="smtCollectWay"/>
+		<result column="Fd_SHS_OnNet" property="smtOnnet"/>
+		<result column="Fd_SHS_OnLine" property="smtOnline"/>
+		<result column="Fd_SHS_StationIP" property="smtStationIp"/>
+		<result column="Fd_SHS_ComVer" property="smtComVer"/>
+		<result column="Fd_SHS_DealCode" property="smtDealCode"/>
+		<result column="Fd_SHS_RegTime" property="smtRegTime"/>
+		<result column="Fd_SHS_LINKFORM" property="smtLinkForm"/>
+		<result column="Fd_DAILYCODE" property="smtDailyCode"/>
+		<result column="Fd_DAILYNO" property="smtDailyNo"/>
+		<result column="Fd_SHS_DATETIME" property="smtDateTime"/>
+		<result column="Fd_TM_UserID" property="smtOperator"/>
+	</resultMap>
+
+
+	<select id="getSmartTerminalList" resultMap="resultMap">
+		SELECT * FROM TBL_SHSTerminal
+		<where>
+			<if test="smartTerminal.smtTerminalcode!=null and smartTerminal.smtTerminalcode.trim()!=''">and Fd_SHS_TerminalCode=#{smartTerminal.smtTerminalCode}</if>
+			<if test="smartTerminal.smtMerchantId!=null and smartTerminal.smtMerchantId.trim()!=''">and Fd_SHS_MerchantID=#{smartTerminal.smtMerchantId}</if>
+		</where>
+	</select>
+
+
+</mapper>

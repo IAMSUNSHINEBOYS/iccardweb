@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alen.mapper.SmartMerchantMapper">
+
+	<insert id="saveSmartMerchant">
+		insert into TBL_SHSMerchant(Fd_SHS_MerchantID,Fd_PFM_UnitID,Fd_SHS_MerchantName,Fd_SHS_ParentID,Fd_SHS_LEVEL,Fd_SHS_LEAST,Fd_SHS_DATETIME,Fd_TM_UserID)
+		values (#{smtMerchantId},#{smtUnitId},#{smtMerchantName},#{smtParentId},#{smtLevel},#{smtLeast},#{smtDateTime},#{smtUserId})
+	</insert>
+
+	<update id="updateSmartMerchant">
+		update TBL_SHSMerchant set Fd_SHS_MerchantName=#{smtMerchantName} where Fd_SHS_MerchantID=#{smtMerchantId}
+	</update>
+
+	<delete id="deleteSmartMerchant">
+		 delete from TBL_SHSMERCHANT sm where exists(select T.smMERCHANTID from (SELECT sm.FD_SHS_MERCHANTID as smMERCHANTID FROM TBL_SHSMERCHANT sm START WITH FD_SHS_MERCHANTID = #{merchantId}
+ 		 CONNECT BY NOCYCLE PRIOR sm.FD_SHS_MERCHANTID = sm.Fd_SHS_ParentID) T where T.smMERCHANTID = sm.FD_SHS_MERCHANTID)
+	</delete>
+
+	<resultMap id="resultMap" type="com.alen.entity.SmartMerchant">
+		<id column="Fd_SHS_MerchantID" property="smtMerchantId"/>
+		<result column="Fd_PFM_UnitID" property="smtUnitId"/>
+		<result column="Fd_SHS_MerchantName" property="smtMerchantName"/>
+		<result column="Fd_SHS_ParentID" property="smtParentId"/>
+		<result column="Fd_SHS_LEVEL" property="smtLevel"/>
+		<result column="Fd_SHS_LEAST" property="smtLeast"/>
+		<result column="Fd_DAILYCODE" property="smtDailyCode"/>
+		<result column="Fd_DAILYNO" property="smtDailyNo"/>
+		<result column="Fd_SHS_DATETIME" property="smtDateTime"/>
+		<result column="Fd_TM_UserID" property="smtUserId"/>
+	</resultMap>
+	<resultMap id="resultMerchantZtreeMap" type="com.alen.entity.MerchantZtree">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="parentId" property="parentId"/>
+		<result column="mlevel" property="mlevel"/>
+	</resultMap>
+
+	<select id="getSmartMerchantList" resultMap="resultMap">
+		SELECT * FROM TBL_SHSMerchant
+		<where>
+			<if test="smartMerchant.smtMerchantName!=null and smartMerchant.smtMerchantName.trim()!=''">fd_shs_merchantname=#{smartMerchant.smtMerchantName}</if>
+		</where>
+	</select>
+
+	<select id="getSmartMerchantByMerchantId" resultMap="resultMap">
+		select * from TBL_SHSMerchant where Fd_SHS_MerchantID=#{merchantId}
+	</select>
+
+	<select id="getMaxMerchantId" resultType="string">
+		  select Max(FD_SHS_MERCHANTID) from TBL_SHSMERCHANT where Fd_SHS_ParentID = #{merchantId}
+	</select>
+
+	<select id="getAllByMap" resultType="java.util.HashMap">
+		select Fd_SHS_MerchantID as mId,Fd_SHS_MerchantName as mName,Fd_SHS_ParentID as parentId,Fd_SHS_LEVEL as mLevel,Fd_SHS_DATETIME as dataTime
+		from TBL_SHSMerchant
+	</select>
+
+	<select id="getdAllByList" resultMap="resultMerchantZtreeMap">
+		select Fd_SHS_MerchantID as id,Fd_SHS_MerchantName as name,Fd_SHS_ParentID as parentId,Fd_SHS_LEVEL as mlevel
+		 from TBL_SHSMerchant
+	</select>
+
+	<select id="getSmartMerchantByParent" resultMap="resultMap">
+		select * from TBL_SHSMerchant where Fd_SHS_ParentID=#{parentId}
+	</select>
+
+	<select id="getSmartMerchantIdByParents" resultMap="resultMap">
+		select * from TBL_SHSMerchant start with Fd_SHS_MerchantID=#{merchantId}
+		connect by prior Fd_SHS_ParentID=Fd_SHS_MerchantID order by FD_SHS_LEVEL ASC
+	</select>
+
+	<select id="getSmartMerchantByChild" resultType="string">
+		SELECT sm.FD_SHS_MERCHANTID FROM TBL_SHSMERCHANT sm START WITH FD_SHS_MERCHANTID = #{merchantId}
+		 CONNECT BY NOCYCLE PRIOR sm.FD_SHS_MERCHANTID = sm.Fd_SHS_ParentID
+		 ORDER BY sm.FD_SHS_PARENTID desc,sm.FD_SHS_MERCHANTID desc
+	</select>
+</mapper>
